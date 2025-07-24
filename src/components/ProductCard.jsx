@@ -1,0 +1,245 @@
+import { useTranslation } from "react-i18next";
+import { Heart, ShoppingCart, Star, Eye } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useApp } from "../context/AppContext";
+
+const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
+  const { t, i18n } = useTranslation();
+  const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } =
+    useApp();
+  const isRTL = i18n.language === "ar";
+  const isWishlisted = isInWishlist(product.id);
+
+  const handleWishlistClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (isWishlisted) {
+      removeFromWishlist(product.id);
+    } else {
+      addToWishlist(product);
+    }
+  };
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart(product);
+  };
+
+  const productName = isRTL ? product.nameAr : product.name;
+  const productDescription = isRTL
+    ? product.descriptionAr
+    : product.description;
+  const hasDiscount =
+    product.originalPrice && product.originalPrice > product.price;
+  const discountPercentage = hasDiscount
+    ? Math.round(
+        ((product.originalPrice - product.price) / product.originalPrice) * 100
+      )
+    : 0;
+
+  if (viewMode === "list") {
+    return (
+      <div className="group bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-glow transition-all duration-300 animate-fadeInUp">
+        <Link to={`/product/${product.id}`} className="flex">
+          {/* Product Image */}
+          <div className="relative w-48 h-48 flex-shrink-0 overflow-hidden">
+            <img
+              src={product.image}
+              alt={productName}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+            />
+            {hasDiscount && (
+              <div className="absolute top-2 left-2 bg-danger text-white text-xs font-bold px-2 py-1 rounded">
+                -{discountPercentage}%
+              </div>
+            )}
+          </div>
+
+          {/* Product Info */}
+          <div className="flex-1 p-6 flex flex-col justify-between">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+                {productName}
+              </h3>
+              <p className="text-gray-600 mb-4 line-clamp-2">
+                {productDescription}
+              </p>
+
+              {/* Rating */}
+              {product.rating && (
+                <div className="flex items-center space-x-1 rtl:space-x-reverse mb-4">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${
+                          i < Math.floor(product.rating)
+                            ? "text-yellow-400 fill-current"
+                            : "text-gray-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-sm text-gray-600">
+                    ({product.reviews})
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <div className="flex items-center justify-between">
+              {/* Price */}
+              <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                <span className="text-2xl font-bold text-primary">
+                  ${product.price}
+                </span>
+                {hasDiscount && (
+                  <span className="text-sm text-gray-500 line-through">
+                    ${product.originalPrice}
+                  </span>
+                )}
+              </div>
+
+              {/* Actions */}
+              <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                <button
+                  onClick={handleWishlistClick}
+                  className={`p-2 rounded-full transition-colors ${
+                    isWishlisted
+                      ? "bg-danger text-white"
+                      : "bg-gray-100 text-gray-600 hover:text-danger"
+                  }`}
+                >
+                  <Heart
+                    className={`w-4 h-4 ${isWishlisted ? "fill-current" : ""}`}
+                  />
+                </button>
+
+                <button
+                  onClick={handleAddToCart}
+                  disabled={!product.inStock}
+                  className="btn-modern btn-primary px-4 py-2 text-sm"
+                >
+                  <ShoppingCart className="w-4 h-4 mr-2" />
+                  {t("product.add_to_cart")}
+                </button>
+              </div>
+            </div>
+          </div>
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="group bg-white rounded-2xl shadow-soft overflow-hidden hover:shadow-glow transition-all duration-500 transform hover:scale-105 card-hover animate-scale-in">
+      <Link to={`/product/${product.id}`} className="block">
+        {/* Product Image */}
+        <div className="relative aspect-square overflow-hidden">
+          <img
+            src={product.image}
+            alt={productName}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          />
+
+          {/* Discount Badge */}
+          {hasDiscount && (
+            <div className="absolute top-2 left-2 bg-danger text-white text-xs font-bold px-2 py-1 rounded">
+              -{discountPercentage}%
+            </div>
+          )}
+
+          {/* Stock Status */}
+          {!product.inStock && (
+            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+              <span className="text-white font-semibold bg-gray-800 px-3 py-1 rounded">
+                {t("product.out_of_stock")}
+              </span>
+            </div>
+          )}
+
+          {/* Quick Actions */}
+          <div className="absolute top-2 right-2 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button
+              onClick={handleWishlistClick}
+              className={`p-2 rounded-full shadow-md transition-colors ${
+                isWishlisted
+                  ? "bg-danger text-white"
+                  : "bg-white text-gray-600 hover:text-danger"
+              }`}
+            >
+              <Heart
+                className={`w-4 h-4 ${isWishlisted ? "fill-current" : ""}`}
+              />
+            </button>
+
+            {showQuickView && (
+              <button className="p-2 bg-white text-gray-600 hover:text-primary rounded-full shadow-md transition-colors">
+                <Eye className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+
+          {/* Add to Cart Button - Overlay */}
+          <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <button
+              onClick={handleAddToCart}
+              disabled={!product.inStock}
+              className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center space-x-2 rtl:space-x-reverse"
+            >
+              <ShoppingCart className="w-4 h-4" />
+              <span className="text-sm font-medium">
+                {t("product.add_to_cart")}
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Product Info */}
+        <div className="p-4">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+            {productName}
+          </h3>
+
+          <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+            {productDescription}
+          </p>
+
+          {/* Rating */}
+          {product.rating && (
+            <div className="flex items-center space-x-1 rtl:space-x-reverse mb-3">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className={`w-4 h-4 ${
+                      i < Math.floor(product.rating)
+                        ? "text-yellow-400 fill-current"
+                        : "text-gray-300"
+                    }`}
+                  />
+                ))}
+              </div>
+              <span className="text-sm text-gray-600">({product.reviews})</span>
+            </div>
+          )}
+
+          {/* Price */}
+          <div className="flex items-center space-x-2 rtl:space-x-reverse">
+            <span className="text-xl font-bold text-primary">
+              ${product.price}
+            </span>
+            {hasDiscount && (
+              <span className="text-sm text-gray-500 line-through">
+                ${product.originalPrice}
+              </span>
+            )}
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+};
+
+export default ProductCard;
