@@ -53,19 +53,19 @@ const CheckoutSuccessPage = () => {
                 <div>
                   <div className="text-2xl font-bold text-gray-900">24-48</div>
                   <div className="text-sm text-gray-600">
-                    Hours for processing
+                    {t("checkout_success.hours_processing")}
                   </div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-gray-900">3-5</div>
                   <div className="text-sm text-gray-600">
-                    Business days delivery
+                    {t("checkout_success.business_days_delivery")}
                   </div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-gray-900">30</div>
                   <div className="text-sm text-gray-600">
-                    Days return policy
+                    {t("checkout_success.days_return")}
                   </div>
                 </div>
               </div>
@@ -83,10 +83,11 @@ const CheckoutSuccessPage = () => {
                   1
                 </div>
                 <div>
-                  <p className="font-medium">Order Confirmation</p>
+                  <p className="font-medium">
+                    {t("checkout_success.order_confirmation")}
+                  </p>
                   <p className="text-sm">
-                    You'll receive an email confirmation shortly with your order
-                    details.
+                    {t("checkout_success.email_confirmation")}
                   </p>
                 </div>
               </div>
@@ -95,10 +96,11 @@ const CheckoutSuccessPage = () => {
                   2
                 </div>
                 <div>
-                  <p className="font-medium">Processing</p>
+                  <p className="font-medium">
+                    {t("checkout_success.processing")}
+                  </p>
                   <p className="text-sm">
-                    Your order will be processed and prepared for shipment
-                    within 24-48 hours.
+                    {t("checkout_success.processing_details")}
                   </p>
                 </div>
               </div>
@@ -107,9 +109,11 @@ const CheckoutSuccessPage = () => {
                   3
                 </div>
                 <div>
-                  <p className="font-medium">Shipping</p>
+                  <p className="font-medium">
+                    {t("checkout_success.shipping")}
+                  </p>
                   <p className="text-sm">
-                    You'll receive tracking information once your order ships.
+                    {t("checkout_success.shipping_details")}
                   </p>
                 </div>
               </div>
@@ -131,13 +135,15 @@ const CheckoutSuccessPage = () => {
               className="flex items-center justify-center space-x-2 rtl:space-x-reverse border border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary hover:text-white transition-colors"
             >
               <Download className="w-5 h-5" />
-              <span>Download Receipt</span>
+              <span>{t("checkout_success.download_receipt")}</span>
             </button>
           </div>
 
           {/* Help Section */}
           <div className="mt-12 text-center">
-            <p className="text-gray-600 mb-2">Need help with your order?</p>
+            <p className="text-gray-600 mb-2">
+              {t("checkout_success.need_help")}
+            </p>
             <button
               onClick={() => navigate("/contact")}
               className="text-primary hover:text-primary-dark font-medium"

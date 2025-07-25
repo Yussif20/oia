@@ -93,11 +93,13 @@ const CategoryPage = () => {
                   onChange={(e) => setSortBy(e.target.value)}
                   className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                 >
-                  <option value="featured">Featured</option>
+                  <option value="featured">{t("home.featured")}</option>
                   <option value="price-low">Price: Low to High</option>
                   <option value="price-high">Price: High to Low</option>
-                  <option value="rating">Highest Rated</option>
-                  <option value="newest">Newest</option>
+                  <option value="rating">
+                    {t("search.sort.highest_rated")}
+                  </option>
+                  <option value="newest">{t("search.sort.newest")}</option>
                 </select>
               </div>
 
@@ -129,7 +131,9 @@ const CategoryPage = () => {
             <div className="flex items-center space-x-4 rtl:space-x-reverse">
               <Filter className="w-5 h-5 text-gray-600" />
               <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                <span className="text-sm text-gray-600">Price:</span>
+                <span className="text-sm text-gray-600">
+                  {t("category_page.price_label")}
+                </span>
                 <input
                   type="range"
                   min="0"

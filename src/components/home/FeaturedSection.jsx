@@ -66,7 +66,7 @@ const FeaturedSection = () => {
             </span>
           </h2>
           <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
-            Handpicked premium products that our customers love the most
+            {t("home.handpicked_description")}
           </p>
           <div className="mt-8 flex justify-center">
             <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
@@ -112,7 +112,9 @@ const FeaturedSection = () => {
                       </span>
                     </h3>
                     <p className="text-gray-600 text-lg">
-                      Discover our top-rated {section.title.toLowerCase()}{" "}
+                      {t("home.discover_top_rated", {
+                        category: section.title.toLowerCase(),
+                      })}{" "}
                       collection
                     </p>
                   </div>
@@ -122,7 +124,7 @@ const FeaturedSection = () => {
                   to={`/category/${section.category}`}
                   className={`bg-gradient-to-r ${section.gradient} text-white px-6 py-3 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 rtl:space-x-reverse group`}
                 >
-                  <span>View All</span>
+                  <span>{t("components.view_all")}</span>
                   <ArrowIcon className="w-4 h-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300" />
                 </Link>
               </div>

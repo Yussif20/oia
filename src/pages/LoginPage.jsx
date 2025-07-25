@@ -51,12 +51,10 @@ const LoginPage = () => {
             </div>
           </div>
           <h2 className="text-3xl font-bold text-gray-900 mb-2">
-            {isLogin ? "Welcome Back!" : "Create Account"}
+            {isLogin ? t("common.welcome_back") : t("common.create_account")}
           </h2>
           <p className="text-gray-600">
-            {isLogin
-              ? "Sign in to your account to continue shopping"
-              : "Join us and start your shopping journey"}
+            {isLogin ? t("common.sign_in_to_account") : t("common.join_us")}
           </p>
         </div>
 
@@ -70,7 +68,7 @@ const LoginPage = () => {
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Full Name
+                  {t("common.full_name")}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -84,7 +82,7 @@ const LoginPage = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
-                    placeholder="Enter your full name"
+                    placeholder={t("common.enter_full_name")}
                   />
                 </div>
               </div>
@@ -96,7 +94,7 @@ const LoginPage = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                Email Address
+                {t("login.email")}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -110,7 +108,7 @@ const LoginPage = () => {
                   value={formData.email}
                   onChange={handleInputChange}
                   className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
-                  placeholder="Enter your email"
+                  placeholder={t("login.email_placeholder")}
                 />
               </div>
             </div>
@@ -121,7 +119,7 @@ const LoginPage = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 mb-2"
               >
-                Password
+                {t("common.password")}
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -135,7 +133,7 @@ const LoginPage = () => {
                   value={formData.password}
                   onChange={handleInputChange}
                   className="appearance-none relative block w-full pl-10 pr-12 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
-                  placeholder="Enter your password"
+                  placeholder={t("common.enter_password_placeholder")}
                 />
                 <button
                   type="button"
@@ -192,7 +190,7 @@ const LoginPage = () => {
                     htmlFor="remember-me"
                     className="ml-2 block text-sm text-gray-700"
                   >
-                    Remember me
+                    {t("common.remember_me")}
                   </label>
                 </div>
                 <div className="text-sm">
@@ -200,7 +198,7 @@ const LoginPage = () => {
                     to="/forgot-password"
                     className="font-medium text-primary hover:text-primary-dark transition-colors"
                   >
-                    Forgot password?
+                    {t("common.forgot_password")}
                   </Link>
                 </div>
               </div>
@@ -248,7 +246,7 @@ const LoginPage = () => {
                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                   />
                 </svg>
-                <span className="ml-2">Google</span>
+                <span className="ml-2">{t("login.google")}</span>
               </button>
 
               <button className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors">
@@ -259,7 +257,7 @@ const LoginPage = () => {
                 >
                   <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                 </svg>
-                <span className="ml-2">Twitter</span>
+                <span className="ml-2">{t("login.twitter")}</span>
               </button>
             </div>
           </div>
@@ -267,7 +265,7 @@ const LoginPage = () => {
           {/* Toggle Login/Register */}
           <div className="text-center">
             <p className="text-sm text-gray-600">
-              {isLogin ? "Don't have an account?" : "Already have an account?"}
+              {isLogin ? t("login.no_account") : t("login.have_account")}
               <button
                 onClick={() => setIsLogin(!isLogin)}
                 className="ml-1 font-medium text-primary hover:text-primary-dark transition-colors"
@@ -280,20 +278,7 @@ const LoginPage = () => {
 
         {/* Terms */}
         <p className="text-center text-xs text-gray-500">
-          By continuing, you agree to our{" "}
-          <Link
-            to="/legal/terms"
-            className="text-primary hover:text-primary-dark"
-          >
-            Terms of Service
-          </Link>{" "}
-          and{" "}
-          <Link
-            to="/legal/privacy"
-            className="text-primary hover:text-primary-dark"
-          >
-            Privacy Policy
-          </Link>
+          {t("common.terms_agreement")}
         </p>
       </div>
     </div>

@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 
 const CartPage = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { cart, updateCartQuantity, removeFromCart, getCartTotal } = useApp();
   const isRTL = i18n.language === "ar";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
@@ -53,7 +53,8 @@ const CartPage = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="max-w-6xl mx-auto">
           <h1 className="text-3xl font-bold text-gray-900 mb-8">
-            Shopping Cart ({cart.length} {cart.length === 1 ? "item" : "items"})
+            {t("cart_page.shopping_cart")} ({cart.length}{" "}
+            {cart.length === 1 ? t("cart_page.item") : t("cart_page.items")})
           </h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -137,26 +138,28 @@ const CartPage = () => {
             <div className="lg:col-span-1">
               <div className="bg-white rounded-lg shadow-lg p-6 sticky top-4">
                 <h2 className="text-xl font-semibold text-gray-900 mb-6">
-                  Order Summary
+                  {t("checkout_page.order_summary")}
                 </h2>
 
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Subtotal</span>
+                    <span className="text-gray-600">{t("cart.subtotal")}</span>
                     <span className="font-semibold">
                       ${subtotal.toFixed(2)}
                     </span>
                   </div>
 
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Shipping</span>
+                    <span className="text-gray-600">{t("cart.shipping")}</span>
                     <span className="font-semibold">
-                      {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                      {shipping === 0
+                        ? t("cart.free")
+                        : `$${shipping.toFixed(2)}`}
                     </span>
                   </div>
 
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Tax</span>
+                    <span className="text-gray-600">{t("cart.tax")}</span>
                     <span className="font-semibold">${tax.toFixed(2)}</span>
                   </div>
 
@@ -175,8 +178,9 @@ const CartPage = () => {
                 {shipping > 0 && (
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                     <p className="text-sm text-blue-800">
-                      Add ${(50 - subtotal).toFixed(2)} more to get free
-                      shipping!
+                      {t("cart.free_shipping_message", {
+                        amount: (50 - subtotal).toFixed(2),
+                      })}
                     </p>
                   </div>
                 )}
@@ -185,7 +189,7 @@ const CartPage = () => {
                   to="/checkout"
                   className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary-dark transition-colors flex items-center justify-center space-x-2 rtl:space-x-reverse mb-4"
                 >
-                  <span>Proceed to Checkout</span>
+                  <span>{t("cart_page.proceed_to_checkout")}</span>
                   <ArrowIcon className="w-5 h-5" />
                 </Link>
 
@@ -193,13 +197,13 @@ const CartPage = () => {
                   to="/"
                   className="w-full border border-gray-300 text-gray-700 py-3 px-6 rounded-lg font-medium hover:bg-gray-50 transition-colors flex items-center justify-center"
                 >
-                  Continue Shopping
+                  {t("cart_page.continue_shopping")}
                 </Link>
 
                 {/* Security Badges */}
                 <div className="mt-6 pt-6 border-t">
                   <div className="text-center text-sm text-gray-600">
-                    <p className="mb-2">🔒 Secure Checkout</p>
+                    <p className="mb-2">{t("cart.secure_checkout")}</p>
                     <p>💳 Multiple Payment Options</p>
                   </div>
                 </div>

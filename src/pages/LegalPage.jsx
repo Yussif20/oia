@@ -85,18 +85,19 @@ const LegalPage = () => {
                     </h3>
                     <div className="space-y-2 text-gray-600">
                       <p>
-                        <strong>Company Name:</strong> {siteConfig.company.name}
+                        <strong>{t("legal.company_name")}:</strong>{" "}
+                        {siteConfig.company.name}
                       </p>
                       <p>
-                        <strong>Commercial Registration:</strong>{" "}
+                        <strong>{t("legal.commercial_registration")}:</strong>{" "}
                         {siteConfig.company.commercialReg}
                       </p>
                       <p>
-                        <strong>Tax Number:</strong>{" "}
+                        <strong>{t("legal.tax_number")}:</strong>{" "}
                         {siteConfig.company.taxNumber}
                       </p>
                       <p>
-                        <strong>Registered Address:</strong>{" "}
+                        <strong>{t("legal.registered_address")}:</strong>{" "}
                         {siteConfig.company.address}
                       </p>
                     </div>
@@ -107,13 +108,16 @@ const LegalPage = () => {
                     </h3>
                     <div className="space-y-2 text-gray-600">
                       <p>
-                        <strong>Phone:</strong> {siteConfig.company.phone}
+                        <strong>{t("legal.phone")}:</strong>{" "}
+                        {siteConfig.company.phone}
                       </p>
                       <p>
-                        <strong>Email:</strong> {siteConfig.company.email}
+                        <strong>{t("legal.email")}:</strong>{" "}
+                        {siteConfig.company.email}
                       </p>
                       <p>
-                        <strong>{t("legal.customer_service")}:</strong> {t("contact.hours")}
+                        <strong>{t("legal.customer_service")}:</strong>{" "}
+                        {t("contact.hours")}
                       </p>
                     </div>
                   </div>
@@ -124,11 +128,10 @@ const LegalPage = () => {
                     <CheckCircle className="w-6 h-6 text-green-600" />
                     <div>
                       <h4 className="font-semibold text-green-900">
-                        Verified Business
+                        {t("legal.verified_business")}
                       </h4>
                       <p className="text-sm text-green-700">
-                        This business has been verified and meets all legal
-                        requirements for e-commerce operations.
+                        {t("legal.verified_business_desc")}
                       </p>
                     </div>
                   </div>

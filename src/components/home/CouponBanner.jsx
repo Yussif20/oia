@@ -87,7 +87,9 @@ const CouponBanner = () => {
                         )}
                       </div>
                       <div className="text-sm text-white/80 group-hover:text-white transition-colors duration-300 mt-1">
-                        {copied ? t("home.coupon_copied") : t("home.coupon_click_to_copy")}
+                        {copied
+                          ? t("home.coupon_copied")
+                          : t("home.coupon_click_to_copy")}
                       </div>
                     </div>
                   </div>
@@ -119,7 +121,7 @@ const CouponBanner = () => {
               {/* Call to Action */}
               <div className="mt-8">
                 <button className="bg-white text-red-600 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl flex items-center space-x-2 rtl:space-x-reverse mx-auto">
-                  <span>Shop Now & Save</span>
+                  <span>{t("components.shop_now_save")}</span>
                   <Sparkles className="w-5 h-5" />
                 </button>
               </div>

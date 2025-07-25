@@ -63,7 +63,9 @@ const ContactPage = () => {
                       {t("footer.phone")}
                     </h3>
                     <p className="text-gray-600">{siteConfig.company.phone}</p>
-                    <p className="text-sm text-gray-500">{t("contact.hours")}</p>
+                    <p className="text-sm text-gray-500">
+                      {t("contact.hours")}
+                    </p>
                   </div>
                 </div>
 
@@ -93,7 +95,9 @@ const ContactPage = () => {
                     <p className="text-gray-600">
                       {siteConfig.company.address}
                     </p>
-                    <p className="text-sm text-gray-500">Visit our office</p>
+                    <p className="text-sm text-gray-500">
+                      {t("contact.visit_office")}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -101,20 +105,28 @@ const ContactPage = () => {
               {/* Business Hours */}
               <div className="mt-8 bg-gray-50 rounded-lg p-6">
                 <h3 className="font-semibold text-gray-900 mb-4">
-                  Business Hours
+                  {t("contact.business_hours")}
                 </h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Monday - Friday</span>
-                    <span className="font-medium">9:00 AM - 6:00 PM</span>
+                    <span className="text-gray-600">
+                      {t("contact.monday_friday")}
+                    </span>
+                    <span className="font-medium">
+                      {t("contact.weekday_hours")}
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Saturday</span>
-                    <span className="font-medium">10:00 AM - 4:00 PM</span>
+                    <span className="text-gray-600">
+                      {t("contact.saturday")}
+                    </span>
+                    <span className="font-medium">
+                      {t("contact.saturday_hours")}
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Sunday</span>
-                    <span className="font-medium">Closed</span>
+                    <span className="text-gray-600">{t("contact.sunday")}</span>
+                    <span className="font-medium">{t("contact.closed")}</span>
                   </div>
                 </div>
               </div>

@@ -44,7 +44,8 @@
     "premium": "Premium",
     "collections": "Collections",
     "premium_collection": "Premium Collection",
-    "handpicked_description": "Handpicked premium products that our customers love the most"
+    "handpicked_description": "Handpicked premium products that our customers love the most",
+    "discover_top_rated": "Discover our top-rated {{category}} collection"
   },
   "product": {
     "add_to_cart": "Add to Cart",
@@ -60,7 +61,12 @@
     "out_of_stock": "Out of Stock",
     "quantity": "Quantity",
     "not_found_title": "Product Not Found",
-    "not_found_description": "The product you're looking for doesn't exist."
+    "not_found_description": "The product you're looking for doesn't exist.",
+    "key_features": "Key Features",
+    "warranty": "1 year warranty included",
+    "return_policy": "30-day return policy",
+    "reviews_coming_soon": "Reviews feature coming soon...",
+    "free_shipping_over": "Free shipping on orders over $50"
   },
   "wishlist": {
     "title": "My Wishlist",
@@ -100,6 +106,21 @@
     "quick_links": "Quick Links",
     "all_rights": "All rights reserved"
   },
+  "login": {
+    "title": "Sign In",
+    "email": "Email Address",
+    "email_placeholder": "Enter your email",
+    "password": "Password",
+    "password_placeholder": "Enter your password",
+    "remember_me": "Remember me",
+    "forgot_password": "Forgot password?",
+    "sign_in": "Sign In",
+    "google": "Google",
+    "twitter": "Twitter",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "sign_up": "Sign up"
+  },
   "contact": {
     "title": "Contact Us",
     "name": "Full Name",
@@ -108,15 +129,32 @@
     "message": "Message",
     "send": "Send Message",
     "success": "Message sent successfully!",
-    "hours": "Mon-Fri: 9AM-6PM"
+    "hours": "Mon-Fri: 9AM-6PM",
+    "response_time": "We'll respond within 24 hours",
+    "visit_office": "Visit our office",
+    "business_hours": "Business Hours",
+    "monday_friday": "Monday - Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday",
+    "closed": "Closed",
+    "weekday_hours": "9:00 AM - 6:00 PM",
+    "saturday_hours": "10:00 AM - 4:00 PM"
   },
   "legal": {
     "terms_title": "Terms of Service",
     "privacy_title": "Privacy Policy",
     "return_policy": "Return Policy",
     "verified_title": "Verified Business",
+    "verified_business": "Verified Business",
+    "verified_business_desc": "This business has been verified and meets all legal requirements.",
     "last_updated": "Last updated",
-    "customer_service": "Customer Service"
+    "customer_service": "Customer Service",
+    "company_name": "Company Name",
+    "commercial_registration": "Commercial Registration",
+    "tax_number": "Tax Number",
+    "registered_address": "Registered Address",
+    "phone": "Phone",
+    "email": "Email"
   },
   "forgot_password": {
     "title": "Forgot Password",
@@ -149,11 +187,103 @@
       "price_low": "Price: Low to High",
       "price_high": "Price: High to Low",
       "name": "Name",
-      "rating": "Rating"
+      "rating": "Rating",
+      "highest_rated": "Highest Rated",
+      "newest": "Newest"
     },
     "category": "Category",
     "all_categories": "All Categories",
     "price_range": "Price Range",
     "clear_filters": "Clear Filters"
+  },
+  "checkout_success": {
+    "order_confirmation": "Order Confirmation",
+    "processing": "Processing",
+    "shipping": "Shipping",
+    "download_receipt": "Download Receipt",
+    "need_help": "Need help with your order?",
+    "hours_processing": "Hours for processing",
+    "days_return": "Days return policy",
+    "business_days_delivery": "Business days delivery",
+    "email_confirmation": "You'll receive an email confirmation shortly with your order details.",
+    "processing_details": "Your order is currently being processed and will be ready for shipping soon.",
+    "shipping_details": "Your order will be shipped within 3-5 business days."
+  },
+  "cart": {
+    "shipping": "Shipping",
+    "free": "Free",
+    "free_shipping_message": "Add ${{amount}} more to get free shipping!",
+    "free_shipping": "Free shipping",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "secure_checkout": "🔒 Secure Checkout"
+  },
+  "checkout_form": {
+    "email": "Email",
+    "phone": "Phone",
+    "subtotal": "Subtotal"
+  },
+  "categories_page": {
+    "trending": "Trending",
+    "shop_now": "Shop Now"
+  },
+  "category_page": {
+    "price_label": "Price:"
+  },
+  "components": {
+    "view_all": "View All",
+    "shop_now_save": "Shop Now & Save",
+    "trusted_secure": "Trusted & Secure"
+  },
+  "common": {
+    "next": "Next",
+    "previous": "Previous",
+    "welcome_back": "Welcome Back!",
+    "create_account": "Create Account",
+    "join_us": "Join us and start your shopping journey",
+    "full_name": "Full Name",
+    "enter_full_name": "Enter your full name",
+    "password": "Password",
+    "enter_password": "Enter your password",
+    "confirm_password": "Confirm Password",
+    "confirm_password_placeholder": "Confirm your password",
+    "create_account_button": "Create Account",
+    "or_continue_with": "Or continue with",
+    "terms_agreement": "By continuing, you agree to our Terms of Service and Privacy Policy",
+    "and": "and",
+    "sign_in_to_account": "Sign in to your account to continue shopping",
+    "enter_password_placeholder": "Enter your password",
+    "remember_me": "Remember me",
+    "forgot_password": "Forgot password?"
+  },
+  "gift_cards": {
+    "digital_delivery": "Digital Delivery",
+    "no_expiry": "No Expiry",
+    "flexible_amount": "Flexible Amount",
+    "easy_to_use": "Easy to Use",
+    "digital_gift_card": "Digital Gift Card"
+  },
+  "cart_page": {
+    "shopping_cart": "Shopping Cart",
+    "item": "item",
+    "items": "items",
+    "total": "Total",
+    "proceed_to_checkout": "Proceed to Checkout",
+    "continue_shopping": "Continue Shopping",
+    "multiple_payment_options": "Multiple payment options"
+  },
+  "checkout_page": {
+    "order_summary": "Order Summary",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "address": "Address",
+    "city": "City",
+    "postal_code": "Postal Code",
+    "card_number": "Card Number",
+    "expiry_date": "Expiry Date",
+    "cvv": "CVV",
+    "cardholder_name": "Cardholder Name",
+    "contact_customer_support": "Contact Customer Support",
+    "what_happens_next": "What happens next?"
   }
 }

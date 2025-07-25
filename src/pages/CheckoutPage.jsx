@@ -185,7 +185,7 @@ const CheckoutPage = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Email
+                          {t("checkout_form.email")}
                         </label>
                         <input
                           type="email"
@@ -198,7 +198,7 @@ const CheckoutPage = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Phone
+                          {t("checkout_form.phone")}
                         </label>
                         <input
                           type="tel"
@@ -390,20 +390,20 @@ const CheckoutPage = () => {
 
                 <div className="space-y-2 mb-4">
                   <div className="flex justify-between">
-                    <span>Subtotal</span>
+                    <span>{t("cart.subtotal")}</span>
                     <span>${subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Shipping</span>
+                    <span>{t("cart.shipping")}</span>
                     <span>${shipping.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span>Tax</span>
+                    <span>{t("cart.tax")}</span>
                     <span>${tax.toFixed(2)}</span>
                   </div>
                   <div className="border-t pt-2">
                     <div className="flex justify-between font-semibold text-lg">
-                      <span>Total</span>
+                      <span>{t("cart_page.total")}</span>
                       <span>${total.toFixed(2)}</span>
                     </div>
                   </div>

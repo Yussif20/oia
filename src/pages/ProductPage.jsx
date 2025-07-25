@@ -38,9 +38,7 @@ const ProductPage = () => {
           <h1 className="text-2xl font-bold text-gray-900 mb-2">
             {t("product.not_found_title")}
           </h1>
-          <p className="text-gray-600">
-            {t("product.not_found_description")}
-          </p>
+          <p className="text-gray-600">{t("product.not_found_description")}</p>
         </div>
       </div>
     );
@@ -182,7 +180,9 @@ const ProductPage = () => {
               {/* Features */}
               {product.features && (
                 <div>
-                  <h3 className="text-lg font-semibold mb-3">Key Features</h3>
+                  <h3 className="text-lg font-semibold mb-3">
+                    {t("product.key_features")}
+                  </h3>
                   <div className="grid grid-cols-2 gap-2">
                     {product.features.map((feature, index) => (
                       <div
@@ -253,16 +253,16 @@ const ProductPage = () => {
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
                   <Truck className="w-5 h-5 text-green-600" />
                   <span className="text-sm">
-                    Free shipping on orders over $50
+                    {t("product.free_shipping_over")}
                   </span>
                 </div>
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
                   <Shield className="w-5 h-5 text-blue-600" />
-                  <span className="text-sm">1 year warranty included</span>
+                  <span className="text-sm">{t("product.warranty")}</span>
                 </div>
                 <div className="flex items-center space-x-3 rtl:space-x-reverse">
                   <RotateCcw className="w-5 h-5 text-orange-600" />
-                  <span className="text-sm">30-day return policy</span>
+                  <span className="text-sm">{t("product.return_policy")}</span>
                 </div>
               </div>
             </div>
@@ -330,7 +330,7 @@ const ProductPage = () => {
                   {t("product.reviews")}
                 </h3>
                 <div className="text-center py-8 text-gray-500">
-                  <p>Reviews feature coming soon...</p>
+                  <p>{t("product.reviews_coming_soon")}</p>
                 </div>
               </div>
             )}

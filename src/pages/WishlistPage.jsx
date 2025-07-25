@@ -41,10 +41,9 @@ const WishlistPage = () => {
             {t("wishlist.title")}
           </h1>
           <p className="text-gray-600">
-            {wishlist.length === 1 
+            {wishlist.length === 1
               ? t("wishlist.item_count", { count: wishlist.length })
-              : t("wishlist.item_count_plural", { count: wishlist.length })
-            }
+              : t("wishlist.item_count_plural", { count: wishlist.length })}
           </p>
         </div>
 

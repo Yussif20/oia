@@ -259,7 +259,9 @@ const Footer = () => {
                 <span className="text-green-400 font-semibold text-sm block">
                   {t("footer.verified")}
                 </span>
-                <span className="text-gray-400 text-xs">Trusted & Secure</span>
+                <span className="text-gray-400 text-xs">
+                  {t("components.trusted_secure")}
+                </span>
               </div>
               <ArrowIcon className="w-4 h-4 text-green-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Link>

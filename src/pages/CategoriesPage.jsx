@@ -50,7 +50,7 @@ const CategoriesPage = () => {
                   {category.featured && (
                     <div className="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold flex items-center space-x-1 rtl:space-x-reverse">
                       <Star className="w-4 h-4 fill-current" />
-                      <span>Featured</span>
+                      <span>{t("home.featured")}</span>
                     </div>
                   )}
 
@@ -64,7 +64,9 @@ const CategoriesPage = () => {
                   {index < 3 && (
                     <div className="absolute bottom-4 left-4 flex items-center space-x-1 rtl:space-x-reverse text-white">
                       <TrendingUp className="w-4 h-4" />
-                      <span className="text-sm font-medium">Trending</span>
+                      <span className="text-sm font-medium">
+                        {t("categories_page.trending")}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -76,8 +78,8 @@ const CategoriesPage = () => {
                   </h3>
 
                   <p className="text-gray-600 mb-4 line-clamp-2">
-                    {t("categories.explore_description", { 
-                      category: t(`categories.${category.id}`).toLowerCase() 
+                    {t("categories.explore_description", {
+                      category: t(`categories.${category.id}`).toLowerCase(),
                     })}
                   </p>
 
@@ -86,7 +88,7 @@ const CategoriesPage = () => {
                     <div className="flex items-center space-x-4 rtl:space-x-reverse text-sm text-gray-500">
                       <span>{category.productCount} items</span>
                       <span>•</span>
-                      <span>Free shipping</span>
+                      <span>{t("cart.free_shipping")}</span>
                     </div>
                     <div className="flex items-center space-x-1 rtl:space-x-reverse">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
@@ -102,7 +104,7 @@ const CategoriesPage = () => {
                     className="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300 flex items-center justify-center space-x-2 rtl:space-x-reverse group-hover:transform group-hover:scale-105"
                   >
                     <ShoppingBag className="w-5 h-5" />
-                    <span>Shop Now</span>
+                    <span>{t("categories_page.shop_now")}</span>
                   </Link>
                 </div>
               </div>
