@@ -216,7 +216,7 @@ const Header = () => {
           <div className="px-4 py-6 space-y-4">
             {/* Language Switch - Mobile */}
             <div className="flex justify-center border-b border-gray-200 pb-4">
-              <LanguageSwitch />
+              <LanguageSwitch isMobile={true} />
             </div>
 
             {/* Navigation Links */}
