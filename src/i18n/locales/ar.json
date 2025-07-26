@@ -112,7 +112,11 @@
     "empty": "قائمة المفضلة فارغة",
     "browse_products": "تصفح المنتجات",
     "item_count": "{{count}} عنصر",
-    "item_count_plural": "{{count}} عنصر"
+    "item_count_plural": "{{count}} عنصر",
+    "clear_all": "مسح الكل",
+    "remove_item": "إزالة من المفضلة",
+    "discover_more": "اكتشف المزيد من المنتجات المذهلة",
+    "continue_exploring": "تابع استكشاف مجموعتنا للعثور على المزيد من العناصر التي ستحبها"
   },
   "checkout": {
     "title": "إتمام الطلب",

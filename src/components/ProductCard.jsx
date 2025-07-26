@@ -28,9 +28,6 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
   };
 
   const productName = isRTL ? product.nameAr : product.name;
-  const productDescription = isRTL
-    ? product.descriptionAr
-    : product.description;
   const hasDiscount =
     product.originalPrice && product.originalPrice > product.price;
   const discountPercentage = hasDiscount
@@ -41,40 +38,37 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
 
   if (viewMode === "list") {
     return (
-      <div className="group bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-glow transition-all duration-300 animate-fadeInUp">
+      <div className="group bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-glow transition-all duration-300 animate-fadeInUp max-w-lg">
         <Link to={`/product/${product.id}`} className="flex">
           {/* Product Image */}
-          <div className="relative w-48 h-48 flex-shrink-0 overflow-hidden">
+          <div className="relative w-32 h-32 flex-shrink-0 overflow-hidden">
             <img
               src={product.image}
               alt={productName}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
             />
             {hasDiscount && (
-              <div className="absolute top-2 left-2 bg-danger text-white text-xs font-bold px-2 py-1 rounded">
+              <div className="absolute top-1 left-1 bg-danger text-white text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
                 -{discountPercentage}%
               </div>
             )}
           </div>
 
           {/* Product Info */}
-          <div className="flex-1 p-6 flex flex-col justify-between">
+          <div className="flex-1 p-3 flex flex-col justify-between">
             <div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors">
+              <h3 className="text-sm font-semibold text-gray-900 mb-1 group-hover:text-primary transition-colors line-clamp-1">
                 {productName}
               </h3>
-              <p className="text-gray-600 mb-4 line-clamp-2">
-                {productDescription}
-              </p>
 
               {/* Rating */}
               {product.rating && (
-                <div className="flex items-center space-x-1 rtl:space-x-reverse mb-4">
+                <div className="flex items-center space-x-1 rtl:space-x-reverse mb-2">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-4 h-4 ${
+                        className={`w-2.5 h-2.5 ${
                           i < Math.floor(product.rating)
                             ? "text-yellow-400 fill-current"
                             : "text-gray-300"
@@ -82,7 +76,7 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-600">
+                  <span className="text-[10px] text-gray-600">
                     ({product.reviews})
                   </span>
                 </div>
@@ -91,38 +85,40 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
 
             <div className="flex items-center justify-between">
               {/* Price */}
-              <div className="flex items-center space-x-2 rtl:space-x-reverse">
-                <span className="text-2xl font-bold text-primary">
+              <div className="flex items-center space-x-1 rtl:space-x-reverse">
+                <span className="text-sm font-bold text-primary">
                   {formatPriceWithDirection(product.price, isRTL)}
                 </span>
                 {hasDiscount && (
-                  <span className="text-sm text-gray-500 line-through">
+                  <span className="text-[10px] text-gray-500 line-through">
                     {formatPriceWithDirection(product.originalPrice, isRTL)}
                   </span>
                 )}
               </div>
 
               {/* Actions */}
-              <div className="flex items-center space-x-2 rtl:space-x-reverse">
+              <div className="flex items-center space-x-1 rtl:space-x-reverse">
                 <button
                   onClick={handleWishlistClick}
-                  className={`p-2 rounded-full transition-colors ${
+                  className={`p-1 rounded-full transition-colors ${
                     isWishlisted
                       ? "bg-danger text-white"
                       : "bg-gray-100 text-gray-600 hover:text-danger"
                   }`}
                 >
                   <Heart
-                    className={`w-4 h-4 ${isWishlisted ? "fill-current" : ""}`}
+                    className={`w-2.5 h-2.5 ${
+                      isWishlisted ? "fill-current" : ""
+                    }`}
                   />
                 </button>
 
                 <button
                   onClick={handleAddToCart}
                   disabled={!product.inStock}
-                  className="btn-modern btn-primary px-4 py-2 text-sm"
+                  className="btn-modern btn-primary px-2 py-1 text-[10px]"
                 >
-                  <ShoppingCart className="w-4 h-4 mr-2" />
+                  <ShoppingCart className="w-2.5 h-2.5 mr-1" />
                   {t("product.add_to_cart")}
                 </button>
               </div>
@@ -134,10 +130,10 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
   }
 
   return (
-    <div className="group bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-glow transition-all duration-500 transform hover:scale-105 card-hover animate-scale-in">
+    <div className="group bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-glow transition-all duration-500 transform hover:scale-105 card-hover animate-scale-in max-w-[240px] mx-auto">
       <Link to={`/product/${product.id}`} className="block">
         {/* Product Image */}
-        <div className="relative aspect-square overflow-hidden">
+        <div className="relative w-full h-48 overflow-hidden">
           <img
             src={product.image}
             alt={productName}
@@ -146,7 +142,7 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
 
           {/* Discount Badge */}
           {hasDiscount && (
-            <div className="absolute top-1 left-1 bg-danger text-white text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
+            <div className="absolute top-1 left-1 bg-danger text-white text-xs font-bold px-1.5 py-0.5 rounded">
               -{discountPercentage}%
             </div>
           )}
@@ -198,18 +194,14 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
         </div>
 
         {/* Product Info */}
-        <div className="p-3">
-          <h3 className="text-sm font-semibold text-gray-900 mb-1 line-clamp-2 group-hover:text-primary transition-colors">
+        <div className="p-4">
+          <h3 className="text-sm font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
             {productName}
           </h3>
 
-          <p className="text-gray-600 text-xs mb-2 line-clamp-1">
-            {productDescription}
-          </p>
-
           {/* Rating */}
           {product.rating && (
-            <div className="flex items-center space-x-1 rtl:space-x-reverse mb-2">
+            <div className="flex items-center space-x-1 rtl:space-x-reverse mb-3">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -227,7 +219,7 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
           )}
 
           {/* Price */}
-          <div className="flex items-center space-x-1 rtl:space-x-reverse">
+          <div className="flex items-center space-x-2 rtl:space-x-reverse">
             <span className="text-lg font-bold text-primary">
               {formatPriceWithDirection(product.price, isRTL)}
             </span>

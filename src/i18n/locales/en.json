@@ -73,7 +73,11 @@
     "empty": "Your wishlist is empty",
     "browse_products": "Browse Products",
     "item_count": "{{count}} item",
-    "item_count_plural": "{{count}} items"
+    "item_count_plural": "{{count}} items",
+    "clear_all": "Clear All",
+    "remove_item": "Remove from wishlist",
+    "discover_more": "Discover More Amazing Products",
+    "continue_exploring": "Continue exploring our collection to find more items you'll love"
   },
   "checkout": {
     "title": "Checkout",

@@ -79,31 +79,17 @@ const FeaturedSection = () => {
             className={`mb-24 animate-fadeInUp`}
             style={{ animationDelay: `${sectionIndex * 0.2}s` }}
           >
-            {/* Enhanced Section Header */}
-            <div
-              className={`bg-gradient-to-br ${section.bgGradient} rounded-3xl p-8 mb-12 relative overflow-hidden`}
-            >
-              {/* Background decorations for each section */}
-              <div className="absolute inset-0">
-                <div className="absolute top-4 right-4 w-20 h-20 bg-white/20 rounded-full blur-2xl"></div>
-                <div className="absolute bottom-4 left-4 w-32 h-32 bg-white/10 rounded-full blur-3xl"></div>
-              </div>
-
-              <div className="flex items-center justify-between relative z-10">
-                <div className="flex items-center space-x-6 rtl:space-x-reverse">
+            {/* Clean Professional Section Header */}
+            <div className="mb-12">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+                <div className="flex items-center space-x-4 rtl:space-x-reverse">
                   <div
-                    className={`w-16 h-16 bg-gradient-to-br ${section.gradient} rounded-2xl flex items-center justify-center shadow-lg transform hover:scale-110 transition-transform duration-300`}
+                    className={`w-14 h-14 bg-gradient-to-br ${section.gradient} rounded-2xl flex items-center justify-center shadow-lg`}
                   >
-                    <Crown className="w-8 h-8 text-white" />
+                    <Crown className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <div className="flex items-center space-x-2 rtl:space-x-reverse mb-2">
-                      <Sparkles className="w-5 h-5 text-yellow-600" />
-                      <span className="text-gray-700 font-semibold text-sm uppercase tracking-wider">
-                        {t("home.premium_collection")}
-                      </span>
-                    </div>
-                    <h3 className="text-3xl md:text-4xl font-black text-gray-900 mb-1">
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-1">
                       {t("home.best_of")}{" "}
                       <span
                         className={`bg-gradient-to-r ${section.gradient} bg-clip-text text-transparent`}
@@ -111,18 +97,17 @@ const FeaturedSection = () => {
                         {section.title}
                       </span>
                     </h3>
-                    <p className="text-gray-600 text-lg">
+                    <p className="text-gray-600 text-sm">
                       {t("home.discover_top_rated", {
                         category: section.title.toLowerCase(),
-                      })}{" "}
-                      collection
+                      })}
                     </p>
                   </div>
                 </div>
 
                 <Link
                   to={`/category/${section.category}`}
-                  className={`bg-gradient-to-r ${section.gradient} text-white px-6 py-3 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 rtl:space-x-reverse group`}
+                  className={`bg-gradient-to-r ${section.gradient} text-white px-6 py-3 rounded-xl font-semibold hover:shadow-xl transition-all duration-300 transform hover:scale-105 flex items-center space-x-2 rtl:space-x-reverse group self-start sm:self-center`}
                 >
                   <span>{t("components.view_all")}</span>
                   <ArrowIcon className="w-4 h-4 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300" />
@@ -131,7 +116,7 @@ const FeaturedSection = () => {
             </div>
 
             {/* Enhanced Products Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
               {section.products.map((product, index) => (
                 <div
                   key={product.id}
@@ -141,13 +126,6 @@ const FeaturedSection = () => {
                   }}
                 >
                   <div className="relative">
-                    {/* Product ranking badge */}
-                    <div
-                      className={`absolute -top-3 -left-3 w-8 h-8 bg-gradient-to-r ${section.gradient} rounded-full flex items-center justify-center text-white font-bold text-sm z-20 shadow-lg`}
-                    >
-                      {index + 1}
-                    </div>
-
                     <ProductCard product={product} showQuickView />
                   </div>
                 </div>

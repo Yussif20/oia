@@ -75,14 +75,14 @@ const CheckoutSuccessPage = () => {
           {/* Next Steps */}
           <div className="bg-blue-50 rounded-lg p-6 mb-8 text-left">
             <h3 className="text-lg font-semibold text-blue-900 mb-4">
-              What happens next?
+              {t("checkout_page.what_happens_next")}
             </h3>
             <div className="space-y-3 text-blue-800">
-              <div className="flex items-start space-x-3 rtl:space-x-reverse">
-                <div className="bg-blue-200 text-blue-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mt-0.5">
+              <div className="flex items-start space-x-3 rtl:space-x-0 rtl:space-x-reverse rtl:gap-3">
+                <div className="bg-blue-200 text-blue-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mt-0.5 flex-shrink-0">
                   1
                 </div>
-                <div>
+                <div className="flex-1">
                   <p className="font-medium">
                     {t("checkout_success.order_confirmation")}
                   </p>
@@ -91,11 +91,11 @@ const CheckoutSuccessPage = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-3 rtl:space-x-reverse">
-                <div className="bg-blue-200 text-blue-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mt-0.5">
+              <div className="flex items-start space-x-3 rtl:space-x-0 rtl:space-x-reverse rtl:gap-3">
+                <div className="bg-blue-200 text-blue-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mt-0.5 flex-shrink-0">
                   2
                 </div>
-                <div>
+                <div className="flex-1">
                   <p className="font-medium">
                     {t("checkout_success.processing")}
                   </p>
@@ -104,11 +104,11 @@ const CheckoutSuccessPage = () => {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-3 rtl:space-x-reverse">
-                <div className="bg-blue-200 text-blue-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mt-0.5">
+              <div className="flex items-start space-x-3 rtl:space-x-0 rtl:space-x-reverse rtl:gap-3">
+                <div className="bg-blue-200 text-blue-800 w-6 h-6 rounded-full flex items-center justify-center text-sm font-bold mt-0.5 flex-shrink-0">
                   3
                 </div>
-                <div>
+                <div className="flex-1">
                   <p className="font-medium">
                     {t("checkout_success.shipping")}
                   </p>
@@ -148,7 +148,7 @@ const CheckoutSuccessPage = () => {
               onClick={() => navigate("/contact")}
               className="text-primary hover:text-primary-dark font-medium"
             >
-              Contact Customer Support
+              {t("checkout_page.contact_customer_support")}
             </button>
           </div>
         </div>

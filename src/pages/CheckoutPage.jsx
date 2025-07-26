@@ -160,7 +160,7 @@ const CheckoutPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          First Name
+                          {t("checkout_page.first_name")}
                         </label>
                         <input
                           type="text"
@@ -173,7 +173,7 @@ const CheckoutPage = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Last Name
+                          {t("checkout_page.last_name")}
                         </label>
                         <input
                           type="text"
@@ -212,7 +212,7 @@ const CheckoutPage = () => {
                       </div>
                       <div className="md:col-span-2">
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Address
+                          {t("checkout_page.address")}
                         </label>
                         <input
                           type="text"
@@ -225,7 +225,7 @@ const CheckoutPage = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          City
+                          {t("checkout_page.city")}
                         </label>
                         <input
                           type="text"
@@ -238,7 +238,7 @@ const CheckoutPage = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Postal Code
+                          {t("checkout_page.postal_code")}
                         </label>
                         <input
                           type="text"
@@ -262,7 +262,7 @@ const CheckoutPage = () => {
                     <div className="space-y-4">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Card Number
+                          {t("checkout_page.card_number")}
                         </label>
                         <input
                           type="text"
@@ -277,7 +277,7 @@ const CheckoutPage = () => {
                       <div className="grid grid-cols-2 gap-4">
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Expiry Date
+                            {t("checkout_page.expiry_date")}
                           </label>
                           <input
                             type="text"
@@ -291,7 +291,7 @@ const CheckoutPage = () => {
                         </div>
                         <div>
                           <label className="block text-sm font-medium text-gray-700 mb-2">
-                            CVV
+                            {t("checkout_page.cvv")}
                           </label>
                           <input
                             type="text"
@@ -306,7 +306,7 @@ const CheckoutPage = () => {
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                          Cardholder Name
+                          {t("checkout_page.cardholder_name")}
                         </label>
                         <input
                           type="text"

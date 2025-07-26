@@ -211,42 +211,12 @@ const Footer = () => {
               })}
             </div>
 
-            {/* Enhanced Newsletter Signup */}
-            <div className="bg-gradient-to-br from-gray-800/50 to-gray-700/30 p-6 rounded-2xl border border-gray-700/50">
-              <div className="flex items-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2 mb-2">
-                <Heart className="w-5 h-5 text-pink-400" />
-                <h4 className="text-lg font-semibold text-white">
-                  {t("footer.newsletter_title")}
-                </h4>
-              </div>
-              <p className="text-gray-400 text-sm mb-4">
-                {t("footer.newsletter_subtitle")}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-3">
-                <input
-                  type="email"
-                  placeholder={t("footer.email_placeholder")}
-                  className="flex-1 px-4 py-3 text-gray-900 bg-white rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 min-w-0"
-                />
-                <button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2 text-white font-medium whitespace-nowrap">
-                  <span>{t("footer.subscribe")}</span>
-                  <ArrowIcon className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Payment Methods Section */}
-      <div className="border-t border-gray-800/50">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-center md:text-left">
-              <h3 className="text-gray-300 font-semibold mb-3">
+            {/* Payment Methods */}
+            <div className="mt-8">
+              <h4 className="text-lg font-semibold text-white mb-4">
                 {t("footer.payment_methods")}
-              </h3>
-              <div className="flex items-center justify-center md:justify-start space-x-4 rtl:space-x-0 rtl:space-x-reverse rtl:gap-4">
+              </h4>
+              <div className="flex items-center space-x-3 rtl:space-x-0 rtl:space-x-reverse rtl:gap-3">
                 {/* Mada */}
                 <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1">
                   <div className="text-xs font-bold text-green-600">MADA</div>

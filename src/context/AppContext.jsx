@@ -72,6 +72,10 @@ export const AppProvider = ({ children }) => {
     setCart([]);
   };
 
+  const clearWishlist = () => {
+    setWishlist([]);
+  };
+
   const value = {
     cart,
     wishlist,
@@ -86,6 +90,7 @@ export const AppProvider = ({ children }) => {
     getCartTotal,
     getCartItemsCount,
     clearCart,
+    clearWishlist,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

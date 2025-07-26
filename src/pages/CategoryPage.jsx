@@ -95,8 +95,12 @@ const CategoryPage = () => {
                   className="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="featured">{t("home.featured")}</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
+                  <option value="price-low">
+                    {t("search.sort.price_low")}
+                  </option>
+                  <option value="price-high">
+                    {t("search.sort.price_high")}
+                  </option>
                   <option value="rating">
                     {t("search.sort.highest_rated")}
                   </option>
@@ -157,7 +161,7 @@ const CategoryPage = () => {
           <div
             className={
               viewMode === "grid"
-                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
+                ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
                 : "space-y-6"
             }
           >

@@ -156,7 +156,7 @@ const LoginPage = () => {
                   htmlFor="confirmPassword"
                   className="block text-sm font-medium text-gray-700 mb-2"
                 >
-                  Confirm Password
+                  {t("common.confirm_password")}
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -170,7 +170,7 @@ const LoginPage = () => {
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     className="appearance-none relative block w-full pl-10 pr-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all"
-                    placeholder="Confirm your password"
+                    placeholder={t("common.confirm_password_placeholder")}
                   />
                 </div>
               </div>
@@ -209,7 +209,7 @@ const LoginPage = () => {
               type="submit"
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all duration-300 transform hover:scale-105"
             >
-              {isLogin ? t("nav.login") : "Create Account"}
+              {isLogin ? t("nav.login") : t("common.create_account_button")}
             </button>
           </form>
 
@@ -221,7 +221,7 @@ const LoginPage = () => {
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-2 bg-white text-gray-500">
-                  Or continue with
+                  {t("common.or_continue_with")}
                 </span>
               </div>
             </div>
@@ -265,12 +265,13 @@ const LoginPage = () => {
           {/* Toggle Login/Register */}
           <div className="text-center">
             <p className="text-sm text-gray-600">
+              {" "}
               {isLogin ? t("login.no_account") : t("login.have_account")}
               <button
                 onClick={() => setIsLogin(!isLogin)}
                 className="ml-1 font-medium text-primary hover:text-primary-dark transition-colors"
               >
-                {isLogin ? "Sign up" : "Sign in"}
+                {isLogin ? t("login.sign_up") : t("login.sign_in")}
               </button>
             </p>
           </div>
