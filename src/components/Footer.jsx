@@ -67,7 +67,7 @@ const Footer = () => {
             </div>
 
             <div className="space-y-4 text-gray-300">
-              <div className="flex items-center space-x-3 rtl:space-x-reverse group">
+              <div className="flex items-center space-x-3 rtl:space-x-0 rtl:space-x-reverse rtl:gap-3 group">
                 <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center group-hover:bg-blue-500/20 transition-colors duration-300">
                   <Phone className="w-4 h-4 text-blue-400" />
                 </div>
@@ -75,7 +75,7 @@ const Footer = () => {
                   {siteConfig.company.phone}
                 </span>
               </div>
-              <div className="flex items-center space-x-3 rtl:space-x-reverse group">
+              <div className="flex items-center space-x-3 rtl:space-x-0 rtl:space-x-reverse rtl:gap-3 group">
                 <div className="w-10 h-10 bg-indigo-500/10 rounded-lg flex items-center justify-center group-hover:bg-indigo-500/20 transition-colors duration-300">
                   <Mail className="w-4 h-4 text-indigo-400" />
                 </div>
@@ -83,7 +83,7 @@ const Footer = () => {
                   {siteConfig.company.email}
                 </span>
               </div>
-              <div className="flex items-start space-x-3 rtl:space-x-reverse group">
+              <div className="flex items-start space-x-3 rtl:space-x-0 rtl:space-x-reverse rtl:gap-3 group">
                 <div className="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center group-hover:bg-purple-500/20 transition-colors duration-300 mt-1">
                   <MapPin className="w-4 h-4 text-purple-400" />
                 </div>
@@ -120,7 +120,7 @@ const Footer = () => {
                 <li key={category.id}>
                   <Link
                     to={category.path}
-                    className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-reverse group"
+                    className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2 group"
                   >
                     <ArrowIcon className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300">
@@ -141,7 +141,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/contact"
-                  className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-reverse group"
+                  className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2 group"
                 >
                   <ArrowIcon className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300">
@@ -152,7 +152,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/legal/terms"
-                  className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-reverse group"
+                  className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2 group"
                 >
                   <ArrowIcon className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300">
@@ -163,7 +163,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/legal/privacy"
-                  className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-reverse group"
+                  className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2 group"
                 >
                   <ArrowIcon className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300">
@@ -174,7 +174,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/legal/return-policy"
-                  className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-reverse group"
+                  className="text-gray-300 hover:text-white transition-all duration-300 flex items-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2 group"
                 >
                   <ArrowIcon className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <span className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-300">
@@ -213,7 +213,7 @@ const Footer = () => {
 
             {/* Enhanced Newsletter Signup */}
             <div className="bg-gradient-to-br from-gray-800/50 to-gray-700/30 p-6 rounded-2xl border border-gray-700/50">
-              <div className="flex items-center space-x-2 rtl:space-x-reverse mb-2">
+              <div className="flex items-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2 mb-2">
                 <Heart className="w-5 h-5 text-pink-400" />
                 <h4 className="text-lg font-semibold text-white">
                   {t("footer.newsletter_title")}
@@ -228,7 +228,7 @@ const Footer = () => {
                   placeholder={t("footer.email_placeholder")}
                   className="flex-1 px-4 py-3 text-gray-900 bg-white rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-500 min-w-0"
                 />
-                <button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 rtl:space-x-reverse text-white font-medium whitespace-nowrap">
+                <button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2 text-white font-medium whitespace-nowrap">
                   <span>{t("footer.subscribe")}</span>
                   <ArrowIcon className="w-4 h-4" />
                 </button>
@@ -246,7 +246,7 @@ const Footer = () => {
               <h3 className="text-gray-300 font-semibold mb-3">
                 {t("footer.payment_methods")}
               </h3>
-              <div className="flex items-center justify-center md:justify-start space-x-4 rtl:space-x-reverse">
+              <div className="flex items-center justify-center md:justify-start space-x-4 rtl:space-x-0 rtl:space-x-reverse rtl:gap-4">
                 {/* Mada */}
                 <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1">
                   <div className="text-xs font-bold text-green-600">MADA</div>
@@ -273,7 +273,7 @@ const Footer = () => {
       <div className="border-t border-gray-800/50 bg-gray-900/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-gray-400 text-sm flex items-center space-x-2 rtl:space-x-reverse">
+            <p className="text-gray-400 text-sm flex items-center space-x-2 rtl:space-x-0 rtl:space-x-reverse rtl:gap-2">
               <span>© 2025 {siteConfig.company.name}.</span>
               <span>{t("footer.all_rights")}</span>
             </p>
@@ -283,7 +283,7 @@ const Footer = () => {
               href="https://eauthenticate.saudibusiness.gov.sa/certificate-details/0000161323"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-3 rtl:space-x-reverse bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 px-6 py-3 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-all duration-300 transform hover:scale-105 group"
+              className="flex items-center space-x-3 rtl:space-x-0 rtl:space-x-reverse rtl:gap-3 bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 px-6 py-3 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-all duration-300 transform hover:scale-105 group"
             >
               <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center group-hover:bg-green-50 transition-colors duration-300">
                 <img
