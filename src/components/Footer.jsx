@@ -192,7 +192,7 @@ const Footer = () => {
             </h3>
 
             {/* Social Icons */}
-            <div className="flex space-x-4 rtl:space-x-reverse">
+            <div className="flex space-x-4 rtl:space-x-0 rtl:space-x-reverse rtl:gap-4">
               {Object.entries(siteConfig.social).map(([platform, url]) => {
                 const Icon = socialIcons[platform];
                 if (!Icon) return null;

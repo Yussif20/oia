@@ -134,7 +134,7 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
   }
 
   return (
-    <div className="group bg-white rounded-2xl shadow-soft overflow-hidden hover:shadow-glow transition-all duration-500 transform hover:scale-105 card-hover animate-scale-in">
+    <div className="group bg-white rounded-xl shadow-soft overflow-hidden hover:shadow-glow transition-all duration-500 transform hover:scale-105 card-hover animate-scale-in">
       <Link to={`/product/${product.id}`} className="block">
         {/* Product Image */}
         <div className="relative aspect-square overflow-hidden">
@@ -146,7 +146,7 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
 
           {/* Discount Badge */}
           {hasDiscount && (
-            <div className="absolute top-2 left-2 bg-danger text-white text-xs font-bold px-2 py-1 rounded">
+            <div className="absolute top-1 left-1 bg-danger text-white text-xs font-bold px-1.5 py-0.5 rounded text-[10px]">
               -{discountPercentage}%
             </div>
           )}
@@ -161,36 +161,36 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
           )}
 
           {/* Quick Actions */}
-          <div className="absolute top-2 right-2 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute top-1 right-1 flex flex-col space-y-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <button
               onClick={handleWishlistClick}
-              className={`p-2 rounded-full shadow-md transition-colors ${
+              className={`p-1.5 rounded-full shadow-md transition-colors ${
                 isWishlisted
                   ? "bg-danger text-white"
                   : "bg-white text-gray-600 hover:text-danger"
               }`}
             >
               <Heart
-                className={`w-4 h-4 ${isWishlisted ? "fill-current" : ""}`}
+                className={`w-3 h-3 ${isWishlisted ? "fill-current" : ""}`}
               />
             </button>
 
             {showQuickView && (
-              <button className="p-2 bg-white text-gray-600 hover:text-primary rounded-full shadow-md transition-colors">
-                <Eye className="w-4 h-4" />
+              <button className="p-1.5 bg-white text-gray-600 hover:text-primary rounded-full shadow-md transition-colors">
+                <Eye className="w-3 h-3" />
               </button>
             )}
           </div>
 
           {/* Add to Cart Button - Overlay */}
-          <div className="absolute bottom-2 left-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="absolute bottom-1 left-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <button
               onClick={handleAddToCart}
               disabled={!product.inStock}
-              className="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary-dark transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center space-x-2 rtl:space-x-reverse"
+              className="w-full bg-primary text-white py-1.5 px-2 rounded-md hover:bg-primary-dark transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center space-x-1 rtl:space-x-reverse"
             >
-              <ShoppingCart className="w-4 h-4" />
-              <span className="text-sm font-medium">
+              <ShoppingCart className="w-3 h-3" />
+              <span className="text-xs font-medium">
                 {t("product.add_to_cart")}
               </span>
             </button>
@@ -198,23 +198,23 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
         </div>
 
         {/* Product Info */}
-        <div className="p-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+        <div className="p-3">
+          <h3 className="text-sm font-semibold text-gray-900 mb-1 line-clamp-2 group-hover:text-primary transition-colors">
             {productName}
           </h3>
 
-          <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+          <p className="text-gray-600 text-xs mb-2 line-clamp-1">
             {productDescription}
           </p>
 
           {/* Rating */}
           {product.rating && (
-            <div className="flex items-center space-x-1 rtl:space-x-reverse mb-3">
+            <div className="flex items-center space-x-1 rtl:space-x-reverse mb-2">
               <div className="flex">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-4 h-4 ${
+                    className={`w-3 h-3 ${
                       i < Math.floor(product.rating)
                         ? "text-yellow-400 fill-current"
                         : "text-gray-300"
@@ -222,17 +222,17 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
                   />
                 ))}
               </div>
-              <span className="text-sm text-gray-600">({product.reviews})</span>
+              <span className="text-xs text-gray-600">({product.reviews})</span>
             </div>
           )}
 
           {/* Price */}
-          <div className="flex items-center space-x-2 rtl:space-x-reverse">
-            <span className="text-xl font-bold text-primary">
+          <div className="flex items-center space-x-1 rtl:space-x-reverse">
+            <span className="text-lg font-bold text-primary">
               {formatPriceWithDirection(product.price, isRTL)}
             </span>
             {hasDiscount && (
-              <span className="text-sm text-gray-500 line-through">
+              <span className="text-xs text-gray-500 line-through">
                 {formatPriceWithDirection(product.originalPrice, isRTL)}
               </span>
             )}
