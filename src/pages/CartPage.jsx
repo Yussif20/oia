@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
+import { formatPriceWithDirection } from "../utils/currency";
 
 const CartPage = () => {
   const { t, i18n } = useTranslation();
@@ -84,7 +85,7 @@ const CartPage = () => {
                             {item.category}
                           </p>
                           <div className="text-lg font-bold text-primary mt-2">
-                            ${item.price}
+                            {formatPriceWithDirection(item.price, isRTL)}
                           </div>
                         </div>
 
@@ -124,7 +125,10 @@ const CartPage = () => {
 
                         <div className="text-right">
                           <div className="text-lg font-bold text-gray-900">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            {formatPriceWithDirection(
+                              item.price * item.quantity,
+                              isRTL
+                            )}
                           </div>
                         </div>
                       </div>
@@ -145,7 +149,7 @@ const CartPage = () => {
                   <div className="flex justify-between">
                     <span className="text-gray-600">{t("cart.subtotal")}</span>
                     <span className="font-semibold">
-                      ${subtotal.toFixed(2)}
+                      {formatPriceWithDirection(subtotal, isRTL)}
                     </span>
                   </div>
 
@@ -154,13 +158,15 @@ const CartPage = () => {
                     <span className="font-semibold">
                       {shipping === 0
                         ? t("cart.free")
-                        : `$${shipping.toFixed(2)}`}
+                        : formatPriceWithDirection(shipping, isRTL)}
                     </span>
                   </div>
 
                   <div className="flex justify-between">
                     <span className="text-gray-600">{t("cart.tax")}</span>
-                    <span className="font-semibold">${tax.toFixed(2)}</span>
+                    <span className="font-semibold">
+                      {formatPriceWithDirection(tax, isRTL)}
+                    </span>
                   </div>
 
                   <div className="border-t pt-4">
@@ -169,7 +175,7 @@ const CartPage = () => {
                         Total
                       </span>
                       <span className="text-xl font-bold text-primary">
-                        ${total.toFixed(2)}
+                        {formatPriceWithDirection(total, isRTL)}
                       </span>
                     </div>
                   </div>

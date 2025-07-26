@@ -238,6 +238,37 @@ const Footer = () => {
         </div>
       </div>
 
+      {/* Payment Methods Section */}
+      <div className="border-t border-gray-800/50">
+        <div className="container mx-auto px-4 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-center md:text-left">
+              <h3 className="text-gray-300 font-semibold mb-3">
+                {t("footer.payment_methods")}
+              </h3>
+              <div className="flex items-center justify-center md:justify-start space-x-4 rtl:space-x-reverse">
+                {/* Mada */}
+                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1">
+                  <div className="text-xs font-bold text-green-600">MADA</div>
+                </div>
+                {/* Visa */}
+                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1">
+                  <div className="text-xs font-bold text-blue-600">VISA</div>
+                </div>
+                {/* Mastercard */}
+                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1">
+                  <div className="text-xs font-bold text-red-600">MC</div>
+                </div>
+                {/* Apple Pay */}
+                <div className="w-12 h-8 bg-black rounded-lg flex items-center justify-center p-1">
+                  <div className="text-xs font-bold text-white">Pay</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Enhanced Bottom Bar with Only Verified Store Link */}
       <div className="border-t border-gray-800/50 bg-gray-900/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-6">
@@ -247,13 +278,19 @@ const Footer = () => {
               <span>{t("footer.all_rights")}</span>
             </p>
 
-            {/* Only Verified Store Link in Bottom Footer */}
-            <Link
-              to="/legal/verified"
+            {/* Store Verification Badge with External Link */}
+            <a
+              href="https://eauthenticate.saudibusiness.gov.sa/certificate-details/0000161323"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center space-x-3 rtl:space-x-reverse bg-gradient-to-r from-green-500/10 to-emerald-500/10 hover:from-green-500/20 hover:to-emerald-500/20 px-6 py-3 rounded-xl border border-green-500/20 hover:border-green-500/40 transition-all duration-300 transform hover:scale-105 group"
             >
-              <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center group-hover:bg-green-500/30 transition-colors duration-300">
-                <Shield className="w-4 h-4 text-green-400" />
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center group-hover:bg-green-50 transition-colors duration-300">
+                <img
+                  src="https://roqe.shop/wp-includes/images/BSC.png"
+                  alt="Business Certificate"
+                  className="w-6 h-6 object-contain"
+                />
               </div>
               <div className="text-left rtl:text-right">
                 <span className="text-green-400 font-semibold text-sm block">
@@ -264,7 +301,7 @@ const Footer = () => {
                 </span>
               </div>
               <ArrowIcon className="w-4 h-4 text-green-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

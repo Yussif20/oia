@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Heart, ShoppingCart, Star, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
+import { formatPriceWithDirection } from "../utils/currency";
 
 const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
   const { t, i18n } = useTranslation();
@@ -92,11 +93,11 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
               {/* Price */}
               <div className="flex items-center space-x-2 rtl:space-x-reverse">
                 <span className="text-2xl font-bold text-primary">
-                  ${product.price}
+                  {formatPriceWithDirection(product.price, isRTL)}
                 </span>
                 {hasDiscount && (
                   <span className="text-sm text-gray-500 line-through">
-                    ${product.originalPrice}
+                    {formatPriceWithDirection(product.originalPrice, isRTL)}
                   </span>
                 )}
               </div>
@@ -228,11 +229,11 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
           {/* Price */}
           <div className="flex items-center space-x-2 rtl:space-x-reverse">
             <span className="text-xl font-bold text-primary">
-              ${product.price}
+              {formatPriceWithDirection(product.price, isRTL)}
             </span>
             {hasDiscount && (
               <span className="text-sm text-gray-500 line-through">
-                ${product.originalPrice}
+                {formatPriceWithDirection(product.originalPrice, isRTL)}
               </span>
             )}
           </div>

@@ -15,6 +15,7 @@ import {
 import { useApp } from "../context/AppContext";
 import { getProductById, getSimilarProducts } from "../data/products";
 import ProductCard from "../components/ProductCard";
+import { formatPriceWithDirection } from "../utils/currency";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -148,12 +149,12 @@ const ProductPage = () => {
                 {/* Price */}
                 <div className="flex items-center space-x-4 rtl:space-x-reverse mb-6">
                   <span className="text-4xl font-bold text-primary">
-                    ${product.price}
+                    {formatPriceWithDirection(product.price, isRTL)}
                   </span>
                   {hasDiscount && (
                     <>
                       <span className="text-2xl text-gray-500 line-through">
-                        ${product.originalPrice}
+                        {formatPriceWithDirection(product.originalPrice, isRTL)}
                       </span>
                       <span className="bg-danger text-white px-3 py-1 rounded-full text-sm font-bold">
                         -{discountPercentage}% OFF
@@ -344,7 +345,7 @@ const ProductPage = () => {
               <h3 className="text-2xl font-bold mb-6">
                 {t("product.similar_products")}
               </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                 {similarProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}

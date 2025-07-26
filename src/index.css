@@ -40,7 +40,10 @@
 [dir="ltr"] {
   font-family: var(--font-en);
 }
-
+a,
+button {
+  cursor: pointer;
+}
 /* Custom Scrollbar with enhanced styling */
 ::-webkit-scrollbar {
   width: 8px;

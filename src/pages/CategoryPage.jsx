@@ -5,6 +5,7 @@ import { useState } from "react";
 import { getProductsByCategory } from "../data/products";
 import { siteConfig } from "../config/siteConfig";
 import ProductCard from "../components/ProductCard";
+import { formatPriceWithDirection } from "../utils/currency";
 
 const CategoryPage = () => {
   const { categoryId } = useParams();
@@ -143,7 +144,8 @@ const CategoryPage = () => {
                   className="w-32"
                 />
                 <span className="text-sm font-medium text-gray-900">
-                  $0 - ${priceRange[1]}
+                  {formatPriceWithDirection(0, false)} -{" "}
+                  {formatPriceWithDirection(priceRange[1], false)}
                 </span>
               </div>
             </div>
@@ -155,7 +157,7 @@ const CategoryPage = () => {
           <div
             className={
               viewMode === "grid"
-                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
                 : "space-y-6"
             }
           >
@@ -191,11 +193,14 @@ const CategoryPage = () => {
                           </div>
                           <div className="text-right">
                             <div className="text-2xl font-bold text-primary">
-                              ${product.price}
+                              {formatPriceWithDirection(product.price, false)}
                             </div>
                             {product.originalPrice && (
                               <div className="text-sm text-gray-500 line-through">
-                                ${product.originalPrice}
+                                {formatPriceWithDirection(
+                                  product.originalPrice,
+                                  false
+                                )}
                               </div>
                             )}
                           </div>

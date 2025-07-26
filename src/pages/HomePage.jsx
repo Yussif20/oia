@@ -1,6 +1,5 @@
 import HeroSection from "../components/home/HeroSection";
 import CategoriesSection from "../components/home/CategoriesSection";
-import CouponBanner from "../components/home/CouponBanner";
 import FeaturedSection from "../components/home/FeaturedSection";
 
 const HomePage = () => {
@@ -8,7 +7,6 @@ const HomePage = () => {
     <div>
       <HeroSection />
       <CategoriesSection />
-      <CouponBanner />
       <FeaturedSection />
     </div>
   );

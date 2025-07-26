@@ -66,7 +66,7 @@
     "warranty": "1 year warranty included",
     "return_policy": "30-day return policy",
     "reviews_coming_soon": "Reviews feature coming soon...",
-    "free_shipping_over": "Free shipping on orders over $50"
+    "free_shipping_over": "Free shipping on orders over ₹‎188"
   },
   "wishlist": {
     "title": "My Wishlist",
@@ -104,7 +104,8 @@
     "email_placeholder": "Enter your email address",
     "subscribe": "Subscribe",
     "quick_links": "Quick Links",
-    "all_rights": "All rights reserved"
+    "all_rights": "All rights reserved",
+    "payment_methods": "We Accept"
   },
   "login": {
     "title": "Sign In",
@@ -212,7 +213,7 @@
   "cart": {
     "shipping": "Shipping",
     "free": "Free",
-    "free_shipping_message": "Add ${{amount}} more to get free shipping!",
+    "free_shipping_message": "Add ₹‎{{amount}} more to get free shipping!",
     "free_shipping": "Free shipping",
     "subtotal": "Subtotal",
     "tax": "Tax",

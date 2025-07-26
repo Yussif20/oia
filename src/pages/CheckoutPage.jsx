@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { CreditCard, Truck, Package, CheckCircle } from "lucide-react";
 import { useApp } from "../context/AppContext";
+import { formatPriceWithDirection } from "../utils/currency";
 
 const CheckoutPage = () => {
   const { t } = useTranslation();
@@ -344,7 +345,10 @@ const CheckoutPage = () => {
                             </p>
                           </div>
                           <div className="text-lg font-semibold">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            {formatPriceWithDirection(
+                              item.price * item.quantity,
+                              false
+                            )}
                           </div>
                         </div>
                       ))}
@@ -391,20 +395,20 @@ const CheckoutPage = () => {
                 <div className="space-y-2 mb-4">
                   <div className="flex justify-between">
                     <span>{t("cart.subtotal")}</span>
-                    <span>${subtotal.toFixed(2)}</span>
+                    <span>{formatPriceWithDirection(subtotal, false)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>{t("cart.shipping")}</span>
-                    <span>${shipping.toFixed(2)}</span>
+                    <span>{formatPriceWithDirection(shipping, false)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span>{t("cart.tax")}</span>
-                    <span>${tax.toFixed(2)}</span>
+                    <span>{formatPriceWithDirection(tax, false)}</span>
                   </div>
                   <div className="border-t pt-2">
                     <div className="flex justify-between font-semibold text-lg">
                       <span>{t("cart_page.total")}</span>
-                      <span>${total.toFixed(2)}</span>
+                      <span>{formatPriceWithDirection(total, false)}</span>
                     </div>
                   </div>
                 </div>

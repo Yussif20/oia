@@ -25,7 +25,7 @@
   "cart": {
     "shipping": "الشحن",
     "free": "مجاني",
-    "free_shipping_message": "أضف {{amount}} دولار أكثر للحصول على شحن مجاني!",
+    "free_shipping_message": "أضف {{amount}} ريال أكثر للحصول على شحن مجاني!",
     "free_shipping": "شحن مجاني",
     "subtotal": "المجموع الفرعي",
     "tax": "الضريبة",
@@ -105,7 +105,7 @@
     "warranty": "ضمان لمدة سنة واحدة",
     "return_policy": "سياسة الإرجاع لمدة 30 يوماً",
     "reviews_coming_soon": "ميزة التقييمات قريباً...",
-    "free_shipping_over": "شحن مجاني للطلبات فوق 50 دولار"
+    "free_shipping_over": "شحن مجاني للطلبات فوق ١٨٨ ريال"
   },
   "wishlist": {
     "title": "قائمة المفضلة",
@@ -143,7 +143,8 @@
     "email_placeholder": "أدخل عنوان بريدك الإلكتروني",
     "subscribe": "اشترك",
     "quick_links": "روابط سريعة",
-    "all_rights": "جميع الحقوق محفوظة"
+    "all_rights": "جميع الحقوق محفوظة",
+    "payment_methods": "وسائل الدفع المقبولة"
   },
   "login": {
     "title": "تسجيل الدخول",
