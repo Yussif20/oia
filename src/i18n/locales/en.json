@@ -186,6 +186,10 @@
     "try_different": "Try adjusting your search terms or browse our categories.",
     "browse_categories": "Browse Categories",
     "results_count": "{{count}} products found",
+    "found_results": "Found {{count}} results",
+    "view_all": "View All",
+    "search_all_for": "Search all for \"{{query}}\"",
+    "try_different_keywords": "Try different keywords or browse our categories",
     "filters": "Filters",
     "sort": {
       "relevance": "Relevance",

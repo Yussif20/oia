@@ -109,7 +109,9 @@ const LegalPage = () => {
                     <div className="space-y-2 text-gray-600">
                       <p>
                         <strong>{t("legal.phone")}:</strong>{" "}
-                        {siteConfig.company.phone}
+                        <span className="dir-ltr">
+                          {siteConfig.company.phone}
+                        </span>
                       </p>
                       <p>
                         <strong>{t("legal.email")}:</strong>{" "}

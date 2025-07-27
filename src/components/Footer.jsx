@@ -16,6 +16,12 @@ import {
 } from "lucide-react";
 import { siteConfig } from "../config/siteConfig";
 
+// Import payment method images
+import visaImg from "../assets/payments/visa.png";
+import mastercardImg from "../assets/payments/mastercard.png";
+import madaImg from "../assets/payments/mada.png";
+import applePayImg from "../assets/payments/apple-pay.png";
+
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar";
@@ -71,7 +77,7 @@ const Footer = () => {
                 <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center group-hover:bg-blue-500/20 transition-colors duration-300">
                   <Phone className="w-4 h-4 text-blue-400" />
                 </div>
-                <span className="group-hover:text-white transition-colors duration-300">
+                <span className="group-hover:text-white transition-colors duration-300 dir-ltr">
                   {siteConfig.company.phone}
                 </span>
               </div>
@@ -218,20 +224,36 @@ const Footer = () => {
               </h4>
               <div className="flex items-center space-x-3 rtl:space-x-0 rtl:space-x-reverse rtl:gap-3">
                 {/* Mada */}
-                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1">
-                  <div className="text-xs font-bold text-green-600">MADA</div>
+                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <img
+                    src={madaImg}
+                    alt="Mada"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 {/* Visa */}
-                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1">
-                  <div className="text-xs font-bold text-blue-600">VISA</div>
+                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <img
+                    src={visaImg}
+                    alt="Visa"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 {/* Mastercard */}
-                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1">
-                  <div className="text-xs font-bold text-red-600">MC</div>
+                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <img
+                    src={mastercardImg}
+                    alt="Mastercard"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 {/* Apple Pay */}
-                <div className="w-12 h-8 bg-black rounded-lg flex items-center justify-center p-1">
-                  <div className="text-xs font-bold text-white">Pay</div>
+                <div className="w-12 h-8 bg-white rounded-lg flex items-center justify-center p-1 shadow-md hover:shadow-lg transition-shadow duration-300">
+                  <img
+                    src={applePayImg}
+                    alt="Apple Pay"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
             </div>

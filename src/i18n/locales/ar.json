@@ -225,6 +225,10 @@
     "try_different": "جرب تعديل مصطلحات البحث أو تصفح فئاتنا.",
     "browse_categories": "تصفح الفئات",
     "results_count": "تم العثور على {{count}} منتج",
+    "found_results": "تم العثور على {{count}} نتيجة",
+    "view_all": "عرض الكل",
+    "search_all_for": "البحث في جميع المنتجات عن \"{{query}}\"",
+    "try_different_keywords": "جرب كلمات مفتاحية مختلفة أو تصفح فئاتنا",
     "filters": "الفلاتر",
     "sort": {
       "relevance": "الصلة",

@@ -62,7 +62,9 @@ const ContactPage = () => {
                     <h3 className="font-semibold text-gray-900">
                       {t("footer.phone")}
                     </h3>
-                    <p className="text-gray-600">{siteConfig.company.phone}</p>
+                    <p className="text-gray-600 dir-ltr">
+                      {siteConfig.company.phone}
+                    </p>
                     <p className="text-sm text-gray-500">
                       {t("contact.hours")}
                     </p>

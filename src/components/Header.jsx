@@ -14,6 +14,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import { siteConfig } from "../config/siteConfig";
 import LanguageSwitch from "./LanguageSwitch";
+import SearchDropdown from "./SearchDropdown";
 
 const Header = () => {
   const { t } = useTranslation();
@@ -82,33 +83,11 @@ const Header = () => {
 
           {/* Search Bar - Desktop */}
           <div className="hidden md:flex flex-1 max-w-2xl mx-8">
-            <form onSubmit={handleSearch} className="relative w-full group">
-              <div className="relative">
-                <input
-                  type="text"
-                  placeholder={t("nav.search")}
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-6 py-4 pr-16 rtl:pr-6 rtl:pl-16 border-0 rounded-2xl focus:outline-none focus:ring-4 focus:ring-white/30 bg-white/95 backdrop-blur-lg placeholder-gray-500 shadow-xl text-gray-800 font-medium group-hover:bg-white transition-all duration-300"
-                />
-                <div className="absolute inset-y-0 right-2 rtl:right-auto rtl:left-2 flex items-center">
-                  <button
-                    type="submit"
-                    className="w-12 h-12 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-xl hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center justify-center"
-                  >
-                    <Search className="w-5 h-5" />
-                  </button>
-                </div>
-              </div>
-              {/* Search suggestions hint */}
-              <div className="absolute top-full left-0 right-0 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-white/90 backdrop-blur-lg rounded-lg p-3 shadow-lg">
-                  <p className="text-xs text-gray-600">
-                    {t("nav.search_suggestion")}
-                  </p>
-                </div>
-              </div>
-            </form>
+            <SearchDropdown
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              onSearch={handleSearch}
+            />
           </div>
 
           {/* Header Actions */}
@@ -168,21 +147,12 @@ const Header = () => {
 
         {/* Search Bar - Mobile */}
         <div className="md:hidden pb-3">
-          <form onSubmit={handleSearch} className="relative">
-            <input
-              type="text"
-              placeholder={t("nav.search")}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full px-4 py-2.5 pr-12 rtl:pr-4 rtl:pl-12 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-white/50 bg-white/95 backdrop-blur-sm placeholder-gray-500 shadow-lg text-sm"
-            />
-            <button
-              type="submit"
-              className="absolute top-1/2 transform -translate-y-1/2 w-9 h-9 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg hover:from-blue-600 hover:to-indigo-700 transition-colors shadow-sm right-1 rtl:right-auto rtl:left-1"
-            >
-              <Search className="w-4 h-4 mx-auto" />
-            </button>
-          </form>
+          <SearchDropdown
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            onSearch={handleSearch}
+            isMobile={true}
+          />
         </div>
       </div>
       {/* Enhanced Categories Bar */}
