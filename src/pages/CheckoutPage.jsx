@@ -428,7 +428,12 @@ const CheckoutPage = () => {
                       <span className="truncate">
                         {item.name} x{item.quantity}
                       </span>
-                      <span>${(item.price * item.quantity).toFixed(2)}</span>
+                      <span>
+                        {formatPriceWithDirection(
+                          item.price * item.quantity,
+                          false
+                        )}
+                      </span>
                     </div>
                   ))}
                 </div>
