@@ -852,3 +852,35 @@ button:hover {
   direction: ltr;
   text-align: left;
 }
+
+/* White gradient text for search page header */
+.text-gradient-white {
+  background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 50%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Category grid centering for both RTL and LTR */
+.categories-grid {
+  display: grid;
+  justify-content: center;
+  place-items: center;
+  width: 100%;
+}
+
+/* Ensure category items are centered within their grid cells */
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* RTL/LTR agnostic spacing */
+[dir="rtl"] .categories-grid,
+[dir="ltr"] .categories-grid {
+  justify-content: center;
+  align-items: center;
+}

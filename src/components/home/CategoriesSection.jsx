@@ -97,12 +97,13 @@ const CategoriesSection = () => {
         </div>
 
         {/* Enhanced Categories Grid with Circular Design */}
-        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 lg:gap-6">
+        <div className="flex justify-center">
+          <div className="categories-grid grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-6 max-w-6xl w-full justify-items-center">
           {siteConfig.categories.map((category, index) => (
             <Link
               key={category.id}
               to={`/category/${category.id}`}
-              className="group relative flex flex-col items-center transition-all duration-500 transform hover:scale-110 animate-fadeInUp"
+              className="category-item group relative flex flex-col items-center transition-all duration-500 transform hover:scale-110 animate-fadeInUp"
               style={{ animationDelay: `${index * 0.08}s` }}
             >
               {/* Circular Image Container */}
@@ -163,6 +164,7 @@ const CategoriesSection = () => {
               <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br from-blue-400 to-purple-600 blur-xl -z-10"></div>
             </Link>
           ))}
+          </div>
         </div>
 
         {/* Enhanced View All Categories Button */}

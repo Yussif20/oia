@@ -1,280 +1,181 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { useSearchParams, Link } from "react-router-dom";
-import { Search, Filter, X, Grid, List } from "lucide-react";
+import { Search, Package, Sparkles, Star } from "lucide-react";
 import ProductCard from "../components/ProductCard";
-import { sampleProducts as products } from "../data/products";
+import { searchProducts } from "../data/products";
 
 const SearchPage = () => {
   const { t } = useTranslation();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState(searchParams.get("q") || "");
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [viewMode, setViewMode] = useState("grid");
-  const [sortBy, setSortBy] = useState("relevance");
-  const [priceRange, setPriceRange] = useState([0, 1000]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [showFilters, setShowFilters] = useState(false);
+  const location = useLocation();
 
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // Get search query from URL parameters
   useEffect(() => {
-    const query = searchParams.get("q") || "";
+    const params = new URLSearchParams(location.search);
+    const query = params.get("q") || "";
     setSearchQuery(query);
 
-    if (query) {
-      const filtered = products.filter(
-        (product) =>
-          product.name.toLowerCase().includes(query.toLowerCase()) ||
-          product.description.toLowerCase().includes(query.toLowerCase()) ||
-          product.category.toLowerCase().includes(query.toLowerCase())
-      );
-      setFilteredProducts(filtered);
+    if (query.trim()) {
+      setLoading(true);
+      const results = searchProducts(query);
+      setSearchResults(results);
+      setLoading(false);
     } else {
-      setFilteredProducts(products);
+      setSearchResults([]);
     }
-  }, [searchParams]);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      setSearchParams({ q: searchQuery.trim() });
-    }
-  };
-
-  const clearSearch = () => {
-    setSearchQuery("");
-    setSearchParams({});
-    setFilteredProducts(products);
-  };
-
-  const sortProducts = (products, sortBy) => {
-    switch (sortBy) {
-      case "price-low":
-        return [...products].sort((a, b) => a.price - b.price);
-      case "price-high":
-        return [...products].sort((a, b) => b.price - a.price);
-      case "name":
-        return [...products].sort((a, b) => a.name.localeCompare(b.name));
-      case "rating":
-        return [...products].sort((a, b) => b.rating - a.rating);
-      default:
-        return products;
-    }
-  };
-
-  const sortedProducts = sortProducts(filteredProducts, sortBy);
+  }, [location.search]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
-        {/* Search Header */}
-        <div className="bg-white rounded-2xl shadow-soft p-6 mb-8 animate-fadeInUp">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-            <div className="flex-1">
-              <h1 className="text-2xl font-bold text-gray-900 mb-4">
-                {searchQuery
-                  ? t("search.results_for", { query: searchQuery })
-                  : t("search.title")}
-              </h1>
-
-              <form onSubmit={handleSearch} className="relative max-w-lg">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder={t("search.placeholder")}
-                  className="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-                />
-                {searchQuery && (
-                  <button
-                    type="button"
-                    onClick={clearSearch}
-                    className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                  >
-                    <X className="w-5 h-5" />
-                  </button>
-                )}
-                <button
-                  type="submit"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary"
-                >
-                  <Search className="w-5 h-5" />
-                </button>
-              </form>
-            </div>
-
-            <div className="flex items-center space-x-4">
-              {/* View Mode Toggle */}
-              <div className="flex border border-gray-300 rounded-lg overflow-hidden">
-                <button
-                  onClick={() => setViewMode("grid")}
-                  className={`p-2 ${
-                    viewMode === "grid"
-                      ? "bg-primary text-white"
-                      : "bg-white text-gray-600 hover:bg-gray-50"
-                  }`}
-                >
-                  <Grid className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() => setViewMode("list")}
-                  className={`p-2 ${
-                    viewMode === "list"
-                      ? "bg-primary text-white"
-                      : "bg-white text-gray-600 hover:bg-gray-50"
-                  }`}
-                >
-                  <List className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Sort Dropdown */}
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-              >
-                <option value="relevance">{t("search.sort.relevance")}</option>
-                <option value="price-low">{t("search.sort.price_low")}</option>
-                <option value="price-high">
-                  {t("search.sort.price_high")}
-                </option>
-                <option value="name">{t("search.sort.name")}</option>
-                <option value="rating">{t("search.sort.rating")}</option>
-              </select>
-
-              {/* Filter Toggle */}
-              <button
-                onClick={() => setShowFilters(!showFilters)}
-                className="flex items-center space-x-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
-              >
-                <Filter className="w-5 h-5" />
-                <span>{t("search.filters")}</span>
-              </button>
-            </div>
-          </div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+      {/* Classy Header Section */}
+      <section className="relative py-20 bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-800 overflow-hidden">
+        {/* Background Decorations */}
+        <div className="absolute inset-0">
+          <div className="absolute top-10 left-20 w-32 h-32 bg-white/10 rounded-full blur-3xl animate-float"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-white/5 rounded-full blur-3xl animate-float-delayed"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
-        <div className="flex gap-8">
-          {/* Filters Sidebar */}
-          {showFilters && (
-            <div className="w-80 animate-fadeInLeft">
-              <div className="bg-white rounded-2xl shadow-soft p-6 sticky top-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                  {t("search.filters")}
-                </h3>
-
-                {/* Category Filter */}
-                <div className="mb-6">
-                  <h4 className="font-medium text-gray-900 mb-2">
-                    {t("search.category")}
-                  </h4>
-                  <select
-                    value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary"
-                  >
-                    <option value="">{t("search.all_categories")}</option>
-                    <option value="electronics">
-                      {t("categories.electronics")}
-                    </option>
-                    <option value="clothing">{t("categories.clothing")}</option>
-                    <option value="books">{t("categories.books")}</option>
-                    <option value="home">{t("categories.home")}</option>
-                  </select>
-                </div>
-
-                {/* Price Range */}
-                <div className="mb-6">
-                  <h4 className="font-medium text-gray-900 mb-2">
-                    {t("search.price_range")}
-                  </h4>
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2">
-                      <input
-                        type="number"
-                        placeholder="Min"
-                        value={priceRange[0]}
-                        onChange={(e) =>
-                          setPriceRange([
-                            parseInt(e.target.value) || 0,
-                            priceRange[1],
-                          ])
-                        }
-                        className="w-20 px-2 py-1 border border-gray-300 rounded text-sm"
-                      />
-                      <span>-</span>
-                      <input
-                        type="number"
-                        placeholder="Max"
-                        value={priceRange[1]}
-                        onChange={(e) =>
-                          setPriceRange([
-                            priceRange[0],
-                            parseInt(e.target.value) || 1000,
-                          ])
-                        }
-                        className="w-20 px-2 py-1 border border-gray-300 rounded text-sm"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => {
-                    setSelectedCategory("");
-                    setPriceRange([0, 1000]);
-                  }}
-                  className="w-full btn-modern btn-ghost text-sm"
-                >
-                  {t("search.clear_filters")}
-                </button>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center">
+            {/* Icon and Badge */}
+            <div className="flex items-center justify-center mb-6">
+              <div className="relative">
+                <Search className="w-12 h-12 text-white/90 animate-pulse" />
+                <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full animate-bounce"></div>
               </div>
             </div>
-          )}
 
-          {/* Products Grid */}
-          <div className="flex-1">
-            {/* Results Count */}
-            <div className="flex items-center justify-between mb-6 animate-fadeInUp stagger-2">
-              <p className="text-gray-600">
-                {t("search.results_count", { count: sortedProducts.length })}
-              </p>
-            </div>
+            {/* Main Heading */}
+            <h1 className="text-4xl md:text-6xl font-black mb-6 text-white tracking-tight">
+              {searchQuery ? (
+                <>
+                  <span className="block text-2xl md:text-3xl font-semibold text-white/80 mb-2">
+                    {t("search.search_results")}
+                  </span>
+                  <span className="text-gradient-white inline-block transform hover:scale-105 transition-transform duration-300">
+                    "{searchQuery}"
+                  </span>
+                </>
+              ) : (
+                <span className="text-gradient-white inline-block transform hover:scale-105 transition-transform duration-300">
+                  {t("search.discover_products")}
+                </span>
+              )}
+            </h1>
 
-            {/* Products */}
-            {sortedProducts.length > 0 ? (
-              <div
-                className={`${
-                  viewMode === "grid"
-                    ? "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6"
-                    : "space-y-4"
-                } animate-fadeInUp stagger-3`}
-              >
-                {sortedProducts.map((product, index) => (
-                  <div
-                    key={product.id}
-                    className={`animate-fadeInUp stagger-${(index % 5) + 1}`}
-                  >
-                    <ProductCard product={product} viewMode={viewMode} />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-16 animate-fadeInUp">
-                <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  {t("search.no_results")}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {t("search.try_different")}
-                </p>
-                <Link to="/categories" className="btn-modern btn-primary">
-                  {t("search.browse_categories")}
-                </Link>
+            {/* Description */}
+            <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-8">
+              {searchQuery
+                ? t("search.showing_results", {
+                    query: searchQuery,
+                    count: searchResults.length,
+                  })
+                : t("search.search_description")}
+            </p>
+
+            {/* Results Count Badge */}
+            {searchQuery && (
+              <div className="inline-flex items-center space-x-3 rtl:space-x-reverse bg-white/10 backdrop-blur-sm px-6 py-3 rounded-full border border-white/20">
+                <Package className="w-5 h-5 text-white/90" />
+                <span className="text-white font-semibold">
+                  {t("search.found_results", { count: searchResults.length })}
+                </span>
+                <Sparkles className="w-5 h-5 text-yellow-400 animate-pulse" />
               </div>
             )}
+
+            {/* Decorative Line */}
+            <div className="mt-8 flex justify-center">
+              <div className="w-24 h-1 bg-gradient-to-r from-white/50 to-white/20 rounded-full"></div>
+            </div>
           </div>
         </div>
+
+        {/* Bottom Wave */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg
+            className="w-full h-16 text-gray-50"
+            fill="currentColor"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+          >
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+          </svg>
+        </div>
+      </section>
+
+      {/* Results Section */}
+      <div className="container mx-auto px-4 py-12">
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+              <p className="text-gray-600">{t("search.searching")}</p>
+            </div>
+          </div>
+        ) : searchResults.length > 0 ? (
+          <>
+            {/* Results Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+              {searchResults.map((product, index) => (
+                <div
+                  key={product.id}
+                  className="animate-fadeInUp"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <ProductCard product={product} showQuickView />
+                </div>
+              ))}
+            </div>
+          </>
+        ) : searchQuery ? (
+          /* No Results */
+          <div className="text-center py-20">
+            <div className="max-w-md mx-auto">
+              <Package className="w-16 h-16 text-gray-300 mx-auto mb-6" />
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                {t("search.no_results")}
+              </h3>
+              <p className="text-gray-600 mb-8">
+                {t("search.no_results_description", { query: searchQuery })}
+              </p>
+              <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
+                <h4 className="font-semibold text-blue-900 mb-3">
+                  {t("search.search_tips")}
+                </h4>
+                <ul className="text-sm text-blue-800 space-y-2 text-left rtl:text-right">
+                  <li>• {t("search.tip_check_spelling")}</li>
+                  <li>• {t("search.tip_try_different")}</li>
+                  <li>• {t("search.tip_more_general")}</li>
+                  <li>• {t("search.tip_browse_categories")}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        ) : (
+          /* Initial State - No Search Query */
+          <div className="text-center py-20">
+            <div className="max-w-lg mx-auto">
+              <div className="relative mb-8">
+                <Search className="w-20 h-20 text-gray-300 mx-auto" />
+                <div className="absolute top-0 right-1/2 transform translate-x-8 -translate-y-2">
+                  <Star className="w-6 h-6 text-yellow-400 animate-pulse" />
+                </div>
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">
+                {t("search.start_searching")}
+              </h3>
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {t("search.start_searching_description")}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
