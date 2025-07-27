@@ -1,9 +1,5 @@
 @import "tailwindcss";
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap");
-
-/* Custom CSS Variables for easy theming */
 @theme {
   /* Primary Colors */
   --color-primary: #3b82f6;

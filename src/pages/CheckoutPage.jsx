@@ -3,7 +3,12 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { CreditCard, Truck, Package, CheckCircle } from "lucide-react";
 import { useApp } from "../context/AppContext";
-import { formatPriceWithDirection } from "../utils/currency";
+import {
+  formatPriceWithDirection,
+  calculateTax,
+  getShippingCost,
+} from "../utils/currency";
+import { siteConfig } from "../config/siteConfig";
 
 const CheckoutPage = () => {
   const { t } = useTranslation();
@@ -62,8 +67,8 @@ const CheckoutPage = () => {
   };
 
   const subtotal = getCartTotal();
-  const shipping = subtotal > 50 ? 0 : 10;
-  const tax = subtotal * 0.1;
+  const shipping = getShippingCost(subtotal);
+  const tax = calculateTax(subtotal);
   const total = subtotal + shipping + tax;
 
   if (cart.length === 0) {
@@ -401,10 +406,14 @@ const CheckoutPage = () => {
                     <span>{t("cart.shipping")}</span>
                     <span>{formatPriceWithDirection(shipping, false)}</span>
                   </div>
-                  <div className="flex justify-between">
-                    <span>{t("cart.tax")}</span>
-                    <span>{formatPriceWithDirection(tax, false)}</span>
-                  </div>
+                  {siteConfig.tax.enabled && (
+                    <div className="flex justify-between">
+                      <span>
+                        {t("cart.tax")} ({siteConfig.tax.displayName})
+                      </span>
+                      <span>{formatPriceWithDirection(tax, false)}</span>
+                    </div>
+                  )}
                   <div className="border-t pt-2">
                     <div className="flex justify-between font-semibold text-lg">
                       <span>{t("cart_page.total")}</span>

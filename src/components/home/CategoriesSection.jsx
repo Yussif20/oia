@@ -99,71 +99,71 @@ const CategoriesSection = () => {
         {/* Enhanced Categories Grid with Circular Design */}
         <div className="flex justify-center">
           <div className="categories-grid grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 lg:gap-6 max-w-6xl w-full justify-items-center">
-          {siteConfig.categories.map((category, index) => (
-            <Link
-              key={category.id}
-              to={`/category/${category.id}`}
-              className="category-item group relative flex flex-col items-center transition-all duration-500 transform hover:scale-110 animate-fadeInUp"
-              style={{ animationDelay: `${index * 0.08}s` }}
-            >
-              {/* Circular Image Container */}
-              <div className="relative w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 group">
-                {/* Background gradient border */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-600 p-1">
-                  <div className="w-full h-full rounded-full overflow-hidden bg-white">
-                    <img
-                      src={category.image}
-                      alt={t(`categories.${category.id}`)}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
+            {siteConfig.categories.map((category, index) => (
+              <Link
+                key={category.id}
+                to={`/category/${category.id}`}
+                className="category-item group relative flex flex-col items-center transition-all duration-500 transform hover:scale-110 animate-fadeInUp"
+                style={{ animationDelay: `${index * 0.08}s` }}
+              >
+                {/* Circular Image Container */}
+                <div className="relative w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-500 group">
+                  {/* Background gradient border */}
+                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 via-indigo-500 to-purple-600 p-1">
+                    <div className="w-full h-full rounded-full overflow-hidden bg-white">
+                      <img
+                        src={category.image}
+                        alt={t(`categories.${category.id}`)}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
 
-                    {/* Circular overlay with hover effect */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                      {/* Circular overlay with hover effect */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                    </div>
+                  </div>
+
+                  {/* Enhanced Featured Badge for circular design */}
+                  {category.featured && (
+                    <div className="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+                      <Star className="w-3 h-3 text-white" />
+                    </div>
+                  )}
+
+                  {/* Premium Badge for Special Categories */}
+                  {index === 0 && (
+                    <div className="absolute -top-1 -left-1 w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
+                      <Crown className="w-3 h-3 text-white" />
+                    </div>
+                  )}
+
+                  {/* Floating particles effect on hover */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                    <div className="absolute top-2 left-2 w-1 h-1 bg-blue-400 rounded-full animate-ping"></div>
+                    <div
+                      className="absolute top-4 right-3 w-1 h-1 bg-purple-400 rounded-full animate-ping"
+                      style={{ animationDelay: "0.5s" }}
+                    ></div>
+                    <div
+                      className="absolute bottom-3 left-4 w-1 h-1 bg-indigo-400 rounded-full animate-ping"
+                      style={{ animationDelay: "1s" }}
+                    ></div>
                   </div>
                 </div>
 
-                {/* Enhanced Featured Badge for circular design */}
-                {category.featured && (
-                  <div className="absolute -top-1 -right-1 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                    <Star className="w-3 h-3 text-white" />
-                  </div>
-                )}
+                {/* Category Title */}
+                <div className="mt-3 text-center">
+                  <h3 className="text-xs md:text-sm font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2 leading-tight">
+                    {t(`categories.${category.id}`)}
+                  </h3>
 
-                {/* Premium Badge for Special Categories */}
-                {index === 0 && (
-                  <div className="absolute -top-1 -left-1 w-6 h-6 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-lg">
-                    <Crown className="w-3 h-3 text-white" />
-                  </div>
-                )}
-
-                {/* Floating particles effect on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                  <div className="absolute top-2 left-2 w-1 h-1 bg-blue-400 rounded-full animate-ping"></div>
-                  <div
-                    className="absolute top-4 right-3 w-1 h-1 bg-purple-400 rounded-full animate-ping"
-                    style={{ animationDelay: "0.5s" }}
-                  ></div>
-                  <div
-                    className="absolute bottom-3 left-4 w-1 h-1 bg-indigo-400 rounded-full animate-ping"
-                    style={{ animationDelay: "1s" }}
-                  ></div>
+                  {/* Subtle underline effect */}
+                  <div className="w-0 group-hover:w-8 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mt-1 transition-all duration-300 rounded-full"></div>
                 </div>
-              </div>
 
-              {/* Category Title */}
-              <div className="mt-3 text-center">
-                <h3 className="text-xs md:text-sm font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300 line-clamp-2 leading-tight">
-                  {t(`categories.${category.id}`)}
-                </h3>
-
-                {/* Subtle underline effect */}
-                <div className="w-0 group-hover:w-8 h-0.5 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mt-1 transition-all duration-300 rounded-full"></div>
-              </div>
-
-              {/* Glow effect on hover */}
-              <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br from-blue-400 to-purple-600 blur-xl -z-10"></div>
-            </Link>
-          ))}
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 bg-gradient-to-br from-blue-400 to-purple-600 blur-xl -z-10"></div>
+              </Link>
+            ))}
           </div>
         </div>
 

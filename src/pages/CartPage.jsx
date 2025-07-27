@@ -9,7 +9,12 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
-import { formatPriceWithDirection } from "../utils/currency";
+import {
+  formatPriceWithDirection,
+  calculateTax,
+  getShippingCost,
+} from "../utils/currency";
+import { siteConfig } from "../config/siteConfig";
 
 const CartPage = () => {
   const { t, i18n } = useTranslation();
@@ -45,8 +50,8 @@ const CartPage = () => {
   }
 
   const subtotal = getCartTotal();
-  const shipping = subtotal > 50 ? 0 : 10;
-  const tax = subtotal * 0.1;
+  const shipping = getShippingCost(subtotal);
+  const tax = calculateTax(subtotal);
   const total = subtotal + shipping + tax;
 
   return (
@@ -162,12 +167,16 @@ const CartPage = () => {
                     </span>
                   </div>
 
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">{t("cart.tax")}</span>
-                    <span className="font-semibold">
-                      {formatPriceWithDirection(tax, isRTL)}
-                    </span>
-                  </div>
+                  {siteConfig.tax.enabled && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">
+                        {t("cart.tax")} ({siteConfig.tax.displayName})
+                      </span>
+                      <span className="font-semibold">
+                        {formatPriceWithDirection(tax, isRTL)}
+                      </span>
+                    </div>
+                  )}
 
                   <div className="border-t pt-4">
                     <div className="flex justify-between">
@@ -185,7 +194,9 @@ const CartPage = () => {
                   <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
                     <p className="text-sm text-blue-800">
                       {t("cart.free_shipping_message", {
-                        amount: (50 - subtotal).toFixed(2),
+                        amount: (
+                          siteConfig.shop.freeShippingThreshold - subtotal
+                        ).toFixed(2),
                       })}
                     </p>
                   </div>
