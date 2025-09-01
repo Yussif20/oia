@@ -2,8 +2,8 @@
 export const sampleProducts = [
   // SUNGLASSES CATEGORY (5 products)
   {
-    id: "1",
-    name: "Classic Aviator Sunglasses",
+    id: "sg1",
+    name: " Aviator Sunglasses",
     nameAr: "نظارة طيار كلاسيكية",
     price: 299,
     originalPrice: 399,
@@ -29,6 +29,7 @@ export const sampleProducts = [
       Weight: "28g",
     },
   },
+
   {
     id: "sg2",
     name: "Designer Cat-Eye Sunglasses",

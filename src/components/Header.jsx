@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { fetchOiaLogo } from "../utils/oiaApi";
 import { useTranslation } from "react-i18next";
 import {
   Search,
@@ -19,6 +20,13 @@ import SearchDropdown from "./SearchDropdown";
 const Header = () => {
   const { t } = useTranslation();
   const { cart, wishlist } = useApp();
+  const [logoUrl, setLogoUrl] = useState(siteConfig.company.logo);
+  // Fetch logo from API
+  useEffect(() => {
+    fetchOiaLogo()
+      .then((blob) => setLogoUrl(URL.createObjectURL(blob)))
+      .catch(() => setLogoUrl(siteConfig.company.logo));
+  }, []);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const location = useLocation();
@@ -65,7 +73,7 @@ const Header = () => {
           >
             <div className="relative">
               <img
-                src={siteConfig.company.logo}
+                src={logoUrl}
                 alt={siteConfig.company.name}
                 className="h-8 w-8 md:h-12 md:w-12 drop-shadow-lg group-hover:rotate-12 transition-transform duration-300"
               />

@@ -15,6 +15,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { siteConfig } from "../config/siteConfig";
+import { useState, useEffect } from "react";
 
 // Import payment method images
 import visaImg from "../assets/payments/visa.png";
@@ -26,6 +27,14 @@ const Footer = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
+  const [logoUrl, setLogoUrl] = useState(siteConfig.company.logo);
+  useEffect(() => {
+    import("../utils/oiaApi").then(({ fetchOiaLogo }) => {
+      fetchOiaLogo()
+        .then((blob) => setLogoUrl(URL.createObjectURL(blob)))
+        .catch(() => setLogoUrl(siteConfig.company.logo));
+    });
+  }, []);
 
   const categories = siteConfig.categories.map((cat) => ({
     id: cat.id,
@@ -57,7 +66,7 @@ const Footer = () => {
             <div className="flex items-center space-x-3 rtl:space-x-reverse">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center">
                 <img
-                  src={siteConfig.company.logo}
+                  src={logoUrl}
                   alt={siteConfig.company.name}
                   className="h-6 w-6 filter brightness-0 invert"
                 />

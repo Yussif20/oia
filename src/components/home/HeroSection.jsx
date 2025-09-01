@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ShoppingBag, ArrowRight, ArrowLeft } from "lucide-react";
 
@@ -7,12 +8,32 @@ const HeroSection = () => {
   const isRTL = i18n.language === "ar";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
+  const [bannerUrl, setBannerUrl] = useState(null);
+  useEffect(() => {
+    import("../../utils/oiaApi").then(({ fetchOiaBanner }) => {
+      fetchOiaBanner()
+        .then((blob) => {
+          console.log("Banner API response:", blob);
+          setBannerUrl(URL.createObjectURL(blob));
+        })
+        .catch((err) => {
+          console.log("Banner API error:", err);
+          setBannerUrl(
+            "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop"
+          );
+        });
+    });
+  }, []);
+
   return (
     <section className="relative bg-gradient-to-br from-primary via-primary-dark to-blue-900 text-white overflow-hidden min-h-[600px] flex items-center">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop"
+          src={
+            bannerUrl ||
+            "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop"
+          }
           alt="Shopping Background"
           className="w-full h-full object-cover opacity-90"
         />

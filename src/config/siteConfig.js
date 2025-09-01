@@ -77,13 +77,15 @@ export const siteConfig = {
     {
       id: "sunglasses",
       name: "Sunglasses",
-      image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400",
+      image:
+        "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400",
       featured: true,
     },
     {
       id: "fragrance",
       name: "Fragrance",
-      image: "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400",
+      image:
+        "https://images.unsplash.com/photo-1541643600914-78b084683601?w=400",
       featured: true,
     },
     {
@@ -95,19 +97,22 @@ export const siteConfig = {
     {
       id: "electronics",
       name: "Electronics",
-      image: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400",
+      image:
+        "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400",
       featured: false,
     },
     {
       id: "fashion",
       name: "Fashion",
-      image: "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400",
+      image:
+        "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400",
       featured: false,
     },
     {
       id: "beauty",
       name: "Beauty",
-      image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400",
+      image:
+        "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400",
       featured: false,
     },
   ],

@@ -1,41 +1,56 @@
 import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowLeft, Star, Crown, Sparkles } from "lucide-react";
 import ProductCard from "../ProductCard";
-import { getBestOfCategory } from "../../data/products";
 
 const FeaturedSection = () => {
   const { t, i18n } = useTranslation();
   const isRTL = i18n.language === "ar";
   const ArrowIcon = isRTL ? ArrowLeft : ArrowRight;
 
-  const bestSunglasses = getBestOfCategory("sunglasses", 4);
-  const bestFragrances = getBestOfCategory("fragrance", 4);
-  const bestGiftCards = getBestOfCategory("gift_cards", 4);
-
-  const featuredCategories = [
-    {
-      category: "sunglasses",
-      products: bestSunglasses,
-      title: t("categories.sunglasses"),
-      gradient: "from-blue-500 to-cyan-500",
-      bgGradient: "from-blue-50 to-cyan-50",
-    },
-    {
-      category: "fragrance",
-      products: bestFragrances,
-      title: t("categories.fragrance"),
-      gradient: "from-purple-500 to-pink-500",
-      bgGradient: "from-purple-50 to-pink-50",
-    },
-    {
-      category: "gift_cards",
-      products: bestGiftCards,
-      title: t("categories.gift_cards"),
-      gradient: "from-orange-500 to-red-500",
-      bgGradient: "from-orange-50 to-red-50",
-    },
-  ];
+  const [featuredCategories, setFeaturedCategories] = useState([]);
+  useEffect(() => {
+    import("../../utils/oiaApi").then(({ fetchOiaProducts }) => {
+      fetchOiaProducts()
+        .then((products) => {
+          console.log("Products API response:", products);
+          // Group products by category and pick top 4 for each
+          const categories = [
+            {
+              id: "sunglasses",
+              title: t("categories.sunglasses"),
+              gradient: "from-blue-500 to-cyan-500",
+              bgGradient: "from-blue-50 to-cyan-50",
+            },
+            {
+              id: "fragrance",
+              title: t("categories.fragrance"),
+              gradient: "from-purple-500 to-pink-500",
+              bgGradient: "from-purple-50 to-pink-50",
+            },
+            {
+              id: "gift_cards",
+              title: t("categories.gift_cards"),
+              gradient: "from-orange-500 to-red-500",
+              bgGradient: "from-orange-50 to-red-50",
+            },
+          ];
+          setFeaturedCategories(
+            categories.map((cat) => ({
+              ...cat,
+              products: products
+                .filter((p) => p.category === cat.id)
+                .slice(0, 4),
+            }))
+          );
+        })
+        .catch((err) => {
+          console.log("Products API error:", err);
+          setFeaturedCategories([]);
+        });
+    });
+  }, [t]);
 
   return (
     <section className="py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50/30 relative overflow-hidden">
