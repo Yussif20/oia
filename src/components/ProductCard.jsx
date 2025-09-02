@@ -3,11 +3,22 @@ import { Heart, ShoppingCart, Star, Eye } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import { formatPriceWithDirection } from "../utils/currency";
+import RiyalIcon from "./RiyalIcon";
+import { useState } from "react";
 
 const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
   const { t, i18n } = useTranslation();
-  const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } =
-    useApp();
+  const {
+    cart,
+    addToCart,
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist,
+    updateCartQuantity,
+  } = useApp();
+  const cartItem = cart.find((item) => item.id === product.id);
+  const [showQtyControls, setShowQtyControls] = useState(!!cartItem);
+  const [quantity, setQuantity] = useState(cartItem ? cartItem.quantity : 1);
   const isRTL = i18n.language === "ar";
   const isWishlisted = isInWishlist(product.id);
 
@@ -24,7 +35,10 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    addToCart(product);
+    setShowQtyControls(true);
+    if (!cartItem) {
+      addToCart(product, quantity);
+    }
   };
 
   const productName = isRTL ? product.nameAr : product.name;
@@ -86,12 +100,14 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
             <div className="flex items-center justify-between">
               {/* Price */}
               <div className="flex items-center space-x-1 rtl:space-x-reverse">
-                <span className="text-sm font-bold text-primary">
+                <span className="text-sm font-bold text-primary flex items-center">
                   {formatPriceWithDirection(product.price, isRTL)}
+                  <RiyalIcon />
                 </span>
                 {hasDiscount && (
-                  <span className="text-[10px] text-gray-500 line-through">
+                  <span className="text-[10px] text-gray-500 line-through flex items-center">
                     {formatPriceWithDirection(product.originalPrice, isRTL)}
+                    <RiyalIcon className="w-3 h-3 ml-1" />
                   </span>
                 )}
               </div>
@@ -113,14 +129,49 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
                   />
                 </button>
 
-                <button
-                  onClick={handleAddToCart}
-                  disabled={!product.inStock}
-                  className="btn-modern btn-primary px-2 py-1 text-[10px]"
-                >
-                  <ShoppingCart className="w-2.5 h-2.5 mr-1" />
-                  {t("product.add_to_cart")}
-                </button>
+                {!showQtyControls ? (
+                  <button
+                    onClick={handleAddToCart}
+                    disabled={!product.inStock}
+                    className="btn-modern btn-primary px-2 py-1 text-[10px]"
+                  >
+                    <ShoppingCart className="w-2.5 h-2.5 mr-1" />
+                    {t("product.add_to_cart")}
+                  </button>
+                ) : (
+                  <div className="flex items-center bg-gray-50 rounded-full shadow-sm px-2 py-1 space-x-2 rtl:space-x-reverse border border-gray-200">
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (quantity > 1) {
+                          setQuantity(quantity - 1);
+                          updateCartQuantity(product.id, quantity - 1);
+                        }
+                      }}
+                      className="w-7 h-7 flex items-center justify-center rounded-full bg-white border border-gray-300 text-primary font-bold text-lg shadow hover:bg-primary hover:text-white transition-colors duration-150 disabled:bg-gray-200 disabled:text-gray-400"
+                      disabled={quantity <= 1}
+                      aria-label="Decrease quantity"
+                    >
+                      -
+                    </button>
+                    <span className="px-3 py-1 text-base font-bold text-gray-900 bg-white rounded-full border border-gray-200 shadow-sm min-w-[2.5rem] text-center">
+                      {quantity}
+                    </span>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setQuantity(quantity + 1);
+                        updateCartQuantity(product.id, quantity + 1);
+                      }}
+                      className="w-7 h-7 flex items-center justify-center rounded-full bg-white border border-gray-300 text-primary font-bold text-lg shadow hover:bg-primary hover:text-white transition-colors duration-150"
+                      aria-label="Increase quantity"
+                    >
+                      +
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -180,16 +231,51 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
 
           {/* Add to Cart Button - Overlay */}
           <div className="absolute bottom-1 left-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <button
-              onClick={handleAddToCart}
-              disabled={!product.inStock}
-              className="w-full bg-primary text-white py-1.5 px-2 rounded-md hover:bg-primary-dark transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center space-x-1 rtl:space-x-reverse"
-            >
-              <ShoppingCart className="w-3 h-3" />
-              <span className="text-xs font-medium">
-                {t("product.add_to_cart")}
-              </span>
-            </button>
+            {!showQtyControls ? (
+              <button
+                onClick={handleAddToCart}
+                disabled={!product.inStock}
+                className="w-full bg-primary text-white py-1.5 px-2 rounded-md hover:bg-primary-dark transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center space-x-1 rtl:space-x-reverse"
+              >
+                <ShoppingCart className="w-3 h-3" />
+                <span className="text-xs font-medium">
+                  {t("product.add_to_cart")}
+                </span>
+              </button>
+            ) : (
+              <div className="flex items-center justify-center bg-gray-50 rounded-full shadow-sm px-2 py-1 space-x-2 rtl:space-x-reverse border border-gray-200">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (quantity > 1) {
+                      setQuantity(quantity - 1);
+                      updateCartQuantity(product.id, quantity - 1);
+                    }
+                  }}
+                  className="w-7 h-7 flex items-center justify-center rounded-full bg-white border border-gray-300 text-primary font-bold text-lg shadow hover:bg-primary hover:text-white transition-colors duration-150 disabled:bg-gray-200 disabled:text-gray-400"
+                  disabled={quantity <= 1}
+                  aria-label="Decrease quantity"
+                >
+                  -
+                </button>
+                <span className="px-3 py-1 text-base font-bold text-gray-900 bg-white rounded-full border border-gray-200 shadow-sm min-w-[2.5rem] text-center">
+                  {quantity}
+                </span>
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setQuantity(quantity + 1);
+                    updateCartQuantity(product.id, quantity + 1);
+                  }}
+                  className="w-7 h-7 flex items-center justify-center rounded-full bg-white border border-gray-300 text-primary font-bold text-lg shadow hover:bg-primary hover:text-white transition-colors duration-150"
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
+              </div>
+            )}
           </div>
         </div>
 
@@ -220,12 +306,14 @@ const ProductCard = ({ product, showQuickView = false, viewMode = "grid" }) => {
 
           {/* Price */}
           <div className="flex items-center space-x-2 rtl:space-x-reverse">
-            <span className="text-lg font-bold text-primary">
+            <span className="text-lg font-bold text-primary flex items-center">
               {formatPriceWithDirection(product.price, isRTL)}
+              <RiyalIcon />
             </span>
             {hasDiscount && (
-              <span className="text-xs text-gray-500 line-through">
+              <span className="text-xs text-gray-500 line-through flex items-center">
                 {formatPriceWithDirection(product.originalPrice, isRTL)}
+                <RiyalIcon className="w-3 h-3 ml-1" />
               </span>
             )}
           </div>

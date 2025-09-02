@@ -13,8 +13,6 @@ import { siteConfig } from "../config/siteConfig.js";
  */
 export const formatPrice = (price, locale = "ar-SA") => {
   return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency: siteConfig.shop.currency,
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(price);
@@ -43,7 +41,7 @@ export const formatCurrency = (amount) => {
   if (typeof amount !== "number") {
     amount = parseFloat(amount) || 0;
   }
-  return `${amount.toFixed(2)} ${siteConfig.shop.currencySymbol}`;
+  return `${amount.toFixed(2)}`;
 };
 
 /**

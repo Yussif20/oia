@@ -8,6 +8,7 @@ import {
   calculateTax,
   getShippingCost,
 } from "../utils/currency";
+import RiyalIcon from "../components/RiyalIcon";
 import { siteConfig } from "../config/siteConfig";
 
 const CheckoutPage = () => {
@@ -350,10 +351,13 @@ const CheckoutPage = () => {
                             </p>
                           </div>
                           <div className="text-lg font-semibold">
-                            {formatPriceWithDirection(
-                              item.price * item.quantity,
-                              false
-                            )}
+                            <span className="flex items-center">
+                              {formatPriceWithDirection(
+                                item.price * item.quantity,
+                                false
+                              )}
+                              <RiyalIcon className="w-4 h-4 ml-1" />
+                            </span>
                           </div>
                         </div>
                       ))}
@@ -401,10 +405,12 @@ const CheckoutPage = () => {
                   <div className="flex justify-between">
                     <span>{t("cart.subtotal")}</span>
                     <span>{formatPriceWithDirection(subtotal, false)}</span>
+                    <RiyalIcon className="w-4 h-4 ml-1" />
                   </div>
                   <div className="flex justify-between">
                     <span>{t("cart.shipping")}</span>
                     <span>{formatPriceWithDirection(shipping, false)}</span>
+                    <RiyalIcon className="w-4 h-4 ml-1" />
                   </div>
                   {siteConfig.tax.enabled && (
                     <div className="flex justify-between">
@@ -412,12 +418,14 @@ const CheckoutPage = () => {
                         {t("cart.tax")} ({siteConfig.tax.displayName})
                       </span>
                       <span>{formatPriceWithDirection(tax, false)}</span>
+                      <RiyalIcon className="w-4 h-4 ml-1" />
                     </div>
                   )}
                   <div className="border-t pt-2">
                     <div className="flex justify-between font-semibold text-lg">
                       <span>{t("cart_page.total")}</span>
                       <span>{formatPriceWithDirection(total, false)}</span>
+                      <RiyalIcon className="w-5 h-5 ml-1" />
                     </div>
                   </div>
                 </div>
@@ -429,10 +437,13 @@ const CheckoutPage = () => {
                         {item.name} x{item.quantity}
                       </span>
                       <span>
-                        {formatPriceWithDirection(
-                          item.price * item.quantity,
-                          false
-                        )}
+                        <span className="flex items-center">
+                          {formatPriceWithDirection(
+                            item.price * item.quantity,
+                            false
+                          )}
+                          <RiyalIcon className="w-4 h-4 ml-1" />
+                        </span>
                       </span>
                     </div>
                   ))}

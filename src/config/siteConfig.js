@@ -65,7 +65,6 @@ export const siteConfig = {
   // 🛒 Shop Configuration
   shop: {
     currency: "SAR", // Default currency
-    currencySymbol: "ر.س", // Currency symbol
     defaultShipping: 25, // Default shipping cost
     freeShippingThreshold: 200, // Free shipping above this amount
     maxQuantityPerItem: 10, // Maximum quantity per product

@@ -11,44 +11,31 @@ const FeaturedSection = () => {
 
   const [featuredCategories, setFeaturedCategories] = useState([]);
   useEffect(() => {
-    import("../../utils/oiaApi").then(({ fetchOiaProducts }) => {
-      fetchOiaProducts()
-        .then((products) => {
-          console.log("Products API response:", products);
-          // Group products by category and pick top 4 for each
-          const categories = [
-            {
-              id: "sunglasses",
-              title: t("categories.sunglasses"),
-              gradient: "from-blue-500 to-cyan-500",
-              bgGradient: "from-blue-50 to-cyan-50",
-            },
-            {
-              id: "fragrance",
-              title: t("categories.fragrance"),
-              gradient: "from-purple-500 to-pink-500",
-              bgGradient: "from-purple-50 to-pink-50",
-            },
-            {
-              id: "gift_cards",
-              title: t("categories.gift_cards"),
-              gradient: "from-orange-500 to-red-500",
-              bgGradient: "from-orange-50 to-red-50",
-            },
-          ];
-          setFeaturedCategories(
-            categories.map((cat) => ({
-              ...cat,
-              products: products
-                .filter((p) => p.category === cat.id)
-                .slice(0, 4),
-            }))
-          );
-        })
-        .catch((err) => {
-          console.log("Products API error:", err);
-          setFeaturedCategories([]);
-        });
+    // Import products data directly from local file
+    import("../../data/products.js").then(({ sampleProducts }) => {
+      // Only use actual products from categories, no fallback
+      const featuredCats = ["sunglasses", "fragrance", "gift_cards"];
+      setFeaturedCategories(
+        featuredCats.map((catId) => ({
+          category: catId,
+          title: t(`categories.${catId}`),
+          gradient:
+            catId === "sunglasses"
+              ? "from-blue-500 to-cyan-500"
+              : catId === "fragrance"
+              ? "from-purple-500 to-pink-500"
+              : "from-orange-500 to-red-500",
+          bgGradient:
+            catId === "sunglasses"
+              ? "from-blue-50 to-cyan-50"
+              : catId === "fragrance"
+              ? "from-purple-50 to-pink-50"
+              : "from-orange-50 to-red-50",
+          products: sampleProducts
+            .filter((p) => p.category === catId)
+            .slice(0, 4),
+        }))
+      );
     });
   }, [t]);
 

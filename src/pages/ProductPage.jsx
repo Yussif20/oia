@@ -16,6 +16,7 @@ import { useApp } from "../context/AppContext";
 import { getProductById, getSimilarProducts } from "../data/products";
 import ProductCard from "../components/ProductCard";
 import { formatPriceWithDirection } from "../utils/currency";
+import RiyalIcon from "../components/RiyalIcon";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -148,13 +149,15 @@ const ProductPage = () => {
 
                 {/* Price */}
                 <div className="flex items-center space-x-4 rtl:space-x-reverse mb-6">
-                  <span className="text-4xl font-bold text-primary">
+                  <span className="text-4xl font-bold text-primary flex items-center">
                     {formatPriceWithDirection(product.price, isRTL)}
+                    <RiyalIcon className="w-5 h-5 ml-2" />
                   </span>
                   {hasDiscount && (
                     <>
-                      <span className="text-2xl text-gray-500 line-through">
+                      <span className="text-2xl text-gray-500 line-through flex items-center">
                         {formatPriceWithDirection(product.originalPrice, isRTL)}
+                        <RiyalIcon className="w-4 h-4 ml-1" />
                       </span>
                       <span className="bg-danger text-white px-3 py-1 rounded-full text-sm font-bold">
                         -{discountPercentage}% OFF

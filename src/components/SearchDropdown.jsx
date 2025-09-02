@@ -104,7 +104,9 @@ const SearchDropdown = ({
   const formatPrice = (price) => {
     return new Intl.NumberFormat(isRTL ? "ar-SA" : "en-US", {
       style: "currency",
-      currency: "SAR",
+      currency: (
+        <SaudiRiyal className="inline-block w-4 h-4 mx-1 align-middle" />
+      ),
       minimumFractionDigits: 0,
     }).format(price);
   };
