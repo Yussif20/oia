@@ -1,13 +1,21 @@
-// ...existing code...
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 import ar from "../i18n/locales/ar.json";
 import en from "../i18n/locales/en.json";
 
 const LegalPage = () => {
   const { i18n } = useTranslation();
+  const location = useLocation();
   const lang = i18n.language.startsWith("ar") ? "ar" : "en";
-  const privacy = lang === "ar" ? ar.privacy_policy : en.privacy_policy;
+  const isTerms = location.pathname.includes("terms");
+  const legal = isTerms
+    ? lang === "ar"
+      ? ar.terms
+      : en.terms
+    : lang === "ar"
+    ? ar.privacy_policy
+    : en.privacy_policy;
   const isRTL = lang === "ar";
 
   return (
@@ -16,27 +24,27 @@ const LegalPage = () => {
         isRTL ? "rtl text-right font-arabic" : "ltr text-left"
       }`}
     >
-      <h1 className="text-3xl font-bold mb-8 text-blue-700">{privacy.title}</h1>
+      <h1 className="text-3xl font-bold mb-8 text-blue-700">{legal.title}</h1>
       <div className="legal-content text-base leading-relaxed">
         {/* Introduction */}
-        {privacy.introduction && (
+        {legal.introduction && (
           <section className="mb-8">
             <h2 className="text-xl font-bold mb-2 text-gray-800">
-              {privacy.introduction.title}
+              {legal.introduction.title}
             </h2>
-            <p>{privacy.introduction.content}</p>
+            <p>{legal.introduction.content}</p>
           </section>
         )}
         {/* Render all other sections */}
-        {Object.keys(privacy)
+        {Object.keys(legal)
           .filter(
             (key) =>
               key !== "title" &&
               key !== "introduction" &&
-              typeof privacy[key] === "object"
+              typeof legal[key] === "object"
           )
           .map((key) => {
-            const section = privacy[key];
+            const section = legal[key];
             return (
               <section key={key} className="mb-8 bg-gray-50 rounded-lg p-6">
                 <h2 className="text-lg font-bold mb-2 text-blue-600">
